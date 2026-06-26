@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bkw5n5or2fn65" path="res://SCENES/panel_word.tscn" id="2_ac0l5"]
 [ext_resource type="Texture2D" uid="uid://dqckg2nemmsfy" path="res://ASSETS/PORTAL_BORDES.png" id="3_ys6xq"]
 [ext_resource type="Texture2D" uid="uid://d2fu14cnwfnow" path="res://ASSETS/PORTAL.png" id="4_df0lc"]
+[ext_resource type="Texture2D" uid="uid://b32qw7fn40sci" path="res://ASSETS/ORBE_2.png" id="5_ys6xq"]
 
 [node name="Main" type="Control" unique_id=1683322235]
 layout_mode = 3
@@ -26,7 +27,7 @@ offset_left = 0.7199707
 offset_top = 0.23999023
 offset_right = -0.4000244
 offset_bottom = -0.08001709
-color = Color(1, 0.4392157, 0.9607843, 1)
+color = Color(1, 0, 1, 1)
 
 [node name="Nebulosa" type="TextureRect" parent="." unique_id=1513005473]
 layout_mode = 1
@@ -66,6 +67,30 @@ grow_vertical = 2
 texture = ExtResource("4_df0lc")
 metadata/_edit_lock_ = true
 
+[node name="OrbColor" type="ColorRect" parent="." unique_id=1388223665]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.71900004
+anchor_top = 0.50600004
+anchor_right = 0.80700004
+anchor_bottom = 0.63100004
+offset_left = 0.51989746
+offset_top = 0.5199585
+offset_right = -0.44006348
+offset_bottom = -0.4800415
+color = Color(0, 0, 0, 1)
+
+[node name="Orbe" type="TextureRect" parent="." unique_id=1837705476]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ys6xq")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1836792828]
 layout_mode = 1
 anchors_preset = -1
@@ -93,7 +118,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer2/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1953935624, 868865974) index="0" unique_id=343419220]
-text = "CORTE"
+rgb_value = Color(1, 0, 0, 1)
 id = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=193801468]
@@ -104,7 +129,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer3/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1413510630, 868865974) index="0" unique_id=343419220]
-text = "ALGO"
+text = "RECESITO"
+rgb_value = Color(0, 1, 0, 1)
 id = 2
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer" unique_id=1348050489]
@@ -115,7 +141,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer4/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(463283630, 868865974) index="0" unique_id=343419220]
-text = "FUE"
+text = "GAGAGAGAAA"
+rgb_value = Color(0.4862745, 0.53333336, 0.49411765, 1)
 id = 3
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer" unique_id=751890386]
@@ -127,6 +154,7 @@ layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer5/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(524969316, 868865974) index="0" unique_id=343419220]
 text = "LADO"
+rgb_value = Color(1, 1, 1, 1)
 id = 4
 
 [editable path="HBoxContainer/MarginContainer/PanelWord"]

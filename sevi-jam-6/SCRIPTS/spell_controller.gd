@@ -15,8 +15,11 @@ func _process(delta: float) -> void:
 
 
 func _input(event):
-	if is_gameplay:
-		if event is InputEventKey and event.is_pressed():
-			letter_pressed.emit(event.as_text_key_label())
-		elif event is InputEventKey and event.is_released():
-			letter_released.emit(event.as_text_key_label())
+	pass
+	#if is_gameplay:
+	#	if event is InputEventKey and event.is_pressed():
+	#		print("HADUDLA")
+	#		print(event.as_text_key_label())
+	#		letter_pressed.emit(event.as_text_key_label())
+	#	elif event is InputEventKey and event.is_released():
+	#		letter_released.emit(event.as_text_key_label())

@@ -34,6 +34,15 @@ func unique_array(arr: Array) -> Array:
 		dict[a] = 1
 	return dict.keys()
 
+func _input(event):
+	if Global.is_gameplay:
+		if event is InputEventKey and event.is_pressed():
+			print("HADUDLA")
+			print(event.as_text_key_label())
+			on_letter_pressed(event.as_text_key_label())
+		elif event is InputEventKey and event.is_released():
+			on_letter_released(event.as_text_key_label())
+
 
 func on_letter_pressed(letter: String) -> void:
 	if array_pressed_letters.has(letter):
@@ -50,14 +59,14 @@ func on_letter_pressed(letter: String) -> void:
 					solved = false
 					break
 			is_solved = solved
-			#print("array letters")
-			#print(array_letters)
-			#print("array pressed letters")
-			#print(array_pressed_letters)
-			#print("valor")
-			#print(is_solved)
 			if (is_solved):
 				Global.word_solved.emit(rgb_value, id)
+		#print("array letters")
+		#print(array_letters)
+		#print("array pressed letters")
+		#print(array_pressed_letters)
+		#print("valor")
+		#print(is_solved)
 
 
 func on_letter_released(letter: String) -> void:
