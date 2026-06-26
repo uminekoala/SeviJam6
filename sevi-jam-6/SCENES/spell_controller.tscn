@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bfahmupmw14mq"]
+
+[ext_resource type="Script" uid="uid://bi0xude8f5tl7" path="res://SCRIPTS/spell_controller.gd" id="1_ceqop"]
+
+[node name="SpellController" type="Node" unique_id=1845443421]
+script = ExtResource("1_ceqop")
