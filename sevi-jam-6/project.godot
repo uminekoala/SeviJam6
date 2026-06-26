@@ -15,6 +15,11 @@ run/main_scene="uid://b8661bv6rht3u"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://cahh56msljf17"
+SpellController="*uid://bi0xude8f5tl7"
+
 [display]
 
 window/size/viewport_width=1920
@@ -36,4 +41,5 @@ folder_colors={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
