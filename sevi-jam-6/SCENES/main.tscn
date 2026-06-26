@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b8661bv6rht3u"]
+
+[ext_resource type="Script" uid="uid://cnl2fxijtk84v" path="res://SCRIPTS/main.gd" id="1_xh1h4"]
+
+[node name="Main" type="Control" unique_id=1683322235]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xh1h4")
+
+[node name="Button" type="Button" parent="." unique_id=282236916]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24300002
+anchor_top = 0.36600003
+anchor_right = 0.55600005
+anchor_bottom = 0.60300004
+offset_left = -0.5600281
+offset_top = -0.2800293
+offset_right = 0.4798584
+offset_bottom = -0.24005127
+text = "ADLASMFKAFJAFJFWAFJKK"
