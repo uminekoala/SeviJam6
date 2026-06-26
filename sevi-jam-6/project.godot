@@ -27,6 +27,10 @@ window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[dotnet]
+
+project/assembly_name="SeviJam6"
+
 [file_customization]
 
 folder_colors={
