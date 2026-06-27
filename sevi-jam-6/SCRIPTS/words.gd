@@ -3,30 +3,55 @@ extends RichTextLabel
 var is_solved = false
 @export var rgb_value = Color.BLUE
 @export var id = 0
+@export var this_is_the_one_officer = false
 var array_letters = []
 var array_pressed_letters = []
 var dict_animated_letters = {}
 var is_animated = false
 @onready var original_text = text
+@onready var timer := Timer.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SpellController.connect("letter_pressed", on_letter_pressed)
-	SpellController.connect("letter_released", on_letter_released)
-	for c in text:
-		array_letters.append(c)
-	array_letters = unique_array(array_letters)
-	array_letters.sort()
-	for a in array_letters:
-		dict_animated_letters[a] = false
+	Global.connect("revert_all_words", on_revert_all_words)
+	Global.connect("play_word_correct_animation", on_play_word_correct_animation)
+	Global.connect("prepare_new_state_on_word", on_prepare_new_state_on_word)
 
-	add_theme_color_override("default_color",rgb_value)
+	timer.wait_time = 8.0
+	timer.one_shot = true
+	add_child(timer)
+	timer.timeout.connect(_on_timer_timeout)
+
+	start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
+
+func start() -> void:
+	is_solved = false
+	original_text = text
+	array_letters = []
+	dict_animated_letters = {}
+	array_pressed_letters = []
+
+	for c in original_text:
+		array_letters.append(c)
+	array_letters = unique_array(array_letters)
+	array_letters.sort()
+
+	for a in array_letters:
+		dict_animated_letters[a] = false
+		
+	add_theme_color_override("default_color",rgb_value)
+
+
+func on_prepare_new_state_on_word() -> void:
+	start()
+	_on_timer_timeout()
+
 
 func unique_array(arr: Array) -> Array:
 	var dict := {}
@@ -41,11 +66,21 @@ func _unhandled_key_input(event):
 		elif event is InputEventKey and event.is_released():
 			on_letter_released(event.as_text_key_label())
 
+func _on_timer_timeout() -> void:
+	# funciona tambien como un reset
+	text = original_text
+	array_pressed_letters = []
+	for i in dict_animated_letters:
+		dict_animated_letters[i] = false
+
 
 func on_letter_pressed(letter: String) -> void:
 	if array_pressed_letters.has(letter):
 		pass
 	if original_text.contains(letter):
+		if (Global.can_unpaint_orb):
+			Global.unpaint_orb.emit(Global.orb_array_colors)
+			Global.can_unpaint_orb = false
 		animate_such_letter(letter)
 		array_pressed_letters.append(letter)
 		array_pressed_letters = unique_array(array_pressed_letters)
@@ -58,20 +93,26 @@ func on_letter_pressed(letter: String) -> void:
 					break
 			is_solved = solved
 			if (is_solved):
-				Global.word_solved.emit(rgb_value, id)
-		print("array letters")
-		print(array_letters)
-		print("array pressed letters")
-		print(array_pressed_letters)
-		print("valor")
-		print(is_solved)
+				text = "[shake rate=20.0 level=20 connected=1]"+original_text+"[/shake]"
+				Global.word_solved.emit(rgb_value, id, this_is_the_one_officer)
+				#text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]"+original_text+"[/pulse]"
+				#text = "[rainbow freq=0.5 sat=0.8 val=0.8 speed=0.7]"+original_text+"[/rainbow]"
+				timer.start()
+				
+				
+		#print("array letters")
+		#print(array_letters)
+		#print("array pressed letters")
+		#print(array_pressed_letters)
+		#print("valor")
+		#print(is_solved)
 
 
 func on_letter_released(letter: String) -> void:
-	if array_pressed_letters.has(letter):
-		if is_solved:
-			Global.word_unsolved.emit(rgb_value, id)
-			is_solved = false
+	if !timer.is_stopped():
+			#Global.word_unsolved.emit(rgb_value, id)
+			pass
+	elif array_pressed_letters.has(letter):
 		array_pressed_letters = unique_array(array_pressed_letters)
 		array_pressed_letters.sort()
 		array_pressed_letters.erase(letter)
@@ -88,3 +129,17 @@ func animate_such_letter(letter: String) -> void:
 				var animated = "[wave amp=100.0 freq=15.0 connected=1]"
 				text = substring1 + animated + substring2[0] + "[/wave]" + substring2.substr(1,-1)
 				dict_animated_letters[letter] = true
+
+
+func on_revert_all_words(array_id: Array) -> void:
+	_on_timer_timeout()
+	for i in array_id:
+		if i == id:
+			$AnimationPlayer.play("shift")
+		
+	
+func on_play_word_correct_animation(array_id: Array) -> void:
+	_on_timer_timeout()
+	for i in array_id:
+		if i == id:
+			$AnimationPlayer.play("correct")

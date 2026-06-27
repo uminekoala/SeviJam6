@@ -20,8 +20,9 @@ grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1388564046]
 material = SubResource("ShaderMaterial_ajtct")
-layout_mode = 0
-offset_left = 592.0
-offset_top = 142.0
-offset_right = 1278.0
-offset_bottom = 1082.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,12 +1,126 @@
 [gd_scene format=3 uid="uid://b8661bv6rht3u"]
 
 [ext_resource type="Script" uid="uid://cnl2fxijtk84v" path="res://SCRIPTS/main.gd" id="1_xh1h4"]
-[ext_resource type="Texture2D" uid="uid://q65lta1qp4q2" path="res://ASSETS/NEBULOSA_TRANS.png" id="2_0u8pi"]
 [ext_resource type="PackedScene" uid="uid://bkw5n5or2fn65" path="res://SCENES/panel_word.tscn" id="2_ac0l5"]
+[ext_resource type="Texture2D" uid="uid://bhf7e2h0u3okv" path="res://ASSETS/NEBULOSA_BORDE.png" id="2_df0lc"]
+[ext_resource type="PackedScene" uid="uid://bd2pjkk05toev" path="res://SCENES/shader.tscn" id="2_h2jjw"]
 [ext_resource type="Texture2D" uid="uid://dqckg2nemmsfy" path="res://ASSETS/PORTAL_BORDES.png" id="3_ys6xq"]
 [ext_resource type="Texture2D" uid="uid://d2fu14cnwfnow" path="res://ASSETS/PORTAL.png" id="4_df0lc"]
-[ext_resource type="Texture2D" uid="uid://b32qw7fn40sci" path="res://ASSETS/ORBE_2.png" id="5_ys6xq"]
+[ext_resource type="PackedScene" uid="uid://8t6vpopy5qup" path="res://SCENES/escena_orbe.tscn" id="5_h2jjw"]
 [ext_resource type="Script" uid="uid://cii8o7e6vn7bh" path="res://SCRIPTS/orb_clicker.gd" id="7_df0lc"]
+
+[sub_resource type="Shader" id="Shader_h2jjw"]
+code = "shader_type canvas_item;
+
+uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
+uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
+uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
+uniform bool discomode = false;
+uniform float speed : hint_range(0.1, 2.0) = 1.0;
+
+#define iTime (TIME * speed)
+
+float rand(vec4 p) {
+    return fract(sin(p.x*1234. + p.y*2345. + p.z*3456. + p.w*4567.) * 5678.);
+}
+
+float smoothnoise(vec4 p) {
+    const vec2 e = vec2(0.0, 1.0);
+    vec4 i = floor(p);    // integer
+    vec4 f = fract(p);    // fract
+    
+    f = f*f*(3. - 2.*f);
+    
+    return mix(mix(mix(mix(rand(i + e.xxxx),
+                           rand(i + e.yxxx), f.x),
+                       mix(rand(i + e.xyxx),
+                           rand(i + e.yyxx), f.x), f.y),
+                   mix(mix(rand(i + e.xxyx),
+                           rand(i + e.yxyx), f.x),
+                       mix(rand(i + e.xyyx),
+                           rand(i + e.yyyx), f.x), f.y), f.z),
+               mix(mix(mix(rand(i + e.xxxy),
+                           rand(i + e.yxxy), f.x),
+                       mix(rand(i + e.xyxy),
+                           rand(i + e.yyxy), f.x), f.y),
+                   mix(mix(rand(i + e.xxyy),
+                           rand(i + e.yxyy), f.x),
+                       mix(rand(i + e.xyyy),
+                           rand(i + e.yyyy), f.x), f.y), f.z), f.w);
+}
+
+float fbm(vec3 x) {
+    float v = 0.0;
+    float a = 0.5;
+    vec3 shift = vec3(1.0);
+    for (int i = 0; i < 10; ++i) {
+        v += a * smoothnoise(vec4(x, cos(iTime * 0.002) * 200.0));
+        x = x * 2.0 + shift;
+        a *= 0.5;
+    }
+    return v;
+}
+
+vec3 uvTo3D(vec2 uv) {
+    float theta = uv.x * 2.0 * 3.14159265359; // Longitud
+    float phi = uv.y * 3.14159265359; // Latitud
+    float x = sin(phi) * cos(theta);
+    float y = sin(phi) * sin(theta);
+    float z = cos(phi);
+    return vec3(x, y, z);
+}
+
+float max3 (vec3 v) {
+  return max (max (v.x, v.y), v.z);
+}
+
+void fragment() {
+    vec3 col_a = colorA;
+    vec3 col_b = colorB;
+    vec3 col_c = colorC;
+    
+    if(discomode){
+        col_a = vec3(sin(iTime), sin(iTime + 7.0), cos(iTime));
+        col_b = vec3(cos(iTime), cos(iTime + 7.0), sin(iTime));
+        col_c = vec3(sin(iTime), cos(iTime), sin(iTime + 0.5));
+    }
+    
+    vec2 uv = UV;
+    vec3 pos = uvTo3D(uv);
+    
+    pos.y += sin(iTime / 5.0);
+    pos.x += cos(iTime / 5.0);
+    pos.z += sin(iTime / 5.0);
+    
+    float fbmm = fbm(pos);
+    vec3 q = vec3(fbmm, sin(fbmm), cos(fbmm));
+    vec3 r = vec3(fbmm, sin(fbmm), cos(fbmm));
+    float v = fbm(pos + 5.0 * r + iTime * 0.005);
+    
+    vec3 col_top = vec3(1.0);
+    vec3 col_bot = vec3(0.0);
+    
+    vec3 res_color = mix(col_a, col_b, clamp(r, 0.0, 1.0));
+    res_color = mix(res_color, col_c, clamp(q, 0.0, 1.0));
+    
+    float poss = v * 2.0 - 1.0;
+    res_color = mix(res_color, col_top, clamp(poss, 0.0, 1.0));
+    res_color = mix(res_color, col_bot, clamp(-poss, 0.0, 1.0));
+    
+    res_color = res_color / max(max3(res_color), 0.001);
+    
+    res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
+
+    COLOR = vec4(res_color, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ab6ae"]
+shader = SubResource("Shader_h2jjw")
+shader_parameter/colorA = Color(0.028229166, 0.11931767, 0, 1)
+shader_parameter/colorB = Color(0.26695138, 0.5316722, 3.85046e-07, 1)
+shader_parameter/colorC = Color(0.19291472, 0.6818135, 0, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 1.0
 
 [node name="Main" type="Control" unique_id=1683322235]
 layout_mode = 3
@@ -19,6 +133,7 @@ mouse_filter = 1
 script = ExtResource("1_xh1h4")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1252218071]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.35900003
@@ -31,20 +146,27 @@ offset_right = -0.4000244
 offset_bottom = -0.08001709
 color = Color(1, 0, 1, 1)
 
+[node name="ShaderPortal" parent="." unique_id=1191469079 instance=ExtResource("2_h2jjw")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" parent="ShaderPortal" index="0" unique_id=1388564046]
+material = SubResource("ShaderMaterial_ab6ae")
+
 [node name="Nebulosa" type="TextureRect" parent="." unique_id=1513005473]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.17400001
-anchor_top = 0.07300001
-anchor_right = 0.81100005
-anchor_bottom = 0.86800003
-offset_left = 0.9199829
-offset_top = 0.15999603
-offset_right = 0.8798828
-offset_bottom = -0.44006348
+anchor_left = -0.252
+anchor_top = -0.36
+anchor_right = 1.253
+anchor_bottom = 1.3490001
+offset_left = -0.16000366
+offset_top = -0.19998169
+offset_right = 0.23999023
+offset_bottom = 0.079956055
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_0u8pi")
+texture = ExtResource("2_df0lc")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
@@ -69,38 +191,18 @@ grow_vertical = 2
 texture = ExtResource("4_df0lc")
 metadata/_edit_lock_ = true
 
-[node name="OrbColor" type="ColorRect" parent="." unique_id=1388223665]
+[node name="Orb" parent="." unique_id=177406260 instance=ExtResource("5_h2jjw")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.71900004
-anchor_top = 0.50600004
-anchor_right = 0.80700004
-anchor_bottom = 0.63100004
-offset_left = 0.51989746
-offset_top = 0.5199585
-offset_right = -0.44006348
-offset_bottom = -0.4800415
-color = Color(0, 0, 0, 1)
-
-[node name="Orbe" type="TextureRect" parent="." unique_id=1837705476]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_ys6xq")
-expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1836792828]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.694
+anchor_top = 0.74100006
 anchor_right = 1.0
-anchor_bottom = 0.88100004
-offset_top = 0.47998047
-offset_bottom = -0.4800415
+anchor_bottom = 0.92700005
+offset_top = -0.28009033
+offset_bottom = -0.16003418
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -112,6 +214,9 @@ size_flags_horizontal = 3
 [node name="PanelWord" parent="HBoxContainer/MarginContainer" unique_id=685837623 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
 
+[node name="Words" parent="HBoxContainer/MarginContainer/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(685837623, 868865974) index="0" unique_id=343419220]
+text = "TIC"
+
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=479259117]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -120,7 +225,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer2/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1953935624, 868865974) index="0" unique_id=343419220]
-text = "HOLA"
+text = "ZAS"
 rgb_value = Color(1, 0, 0, 1)
 id = 1
 
@@ -135,7 +240,7 @@ layout_mode = 2
 visible = false
 text = "¬#~€@~€@"
 rgb_value = Color(0, 1, 0, 1)
-id = 2
+id = 999
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer" unique_id=1348050489]
 layout_mode = 2
@@ -145,9 +250,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer4/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(463283630, 868865974) index="0" unique_id=343419220]
-text = "ESPINILLA"
+text = "UTH"
 rgb_value = Color(0.4862745, 0.53333336, 0.49411765, 1)
-id = 3
+id = 2
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer" unique_id=751890386]
 layout_mode = 2
@@ -157,9 +262,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer5/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(524969316, 868865974) index="0" unique_id=343419220]
-text = "LADO"
+text = "KAN"
 rgb_value = Color(1, 1, 1, 1)
-id = 4
+id = 3
 
 [node name="OrbClicker" type="Control" parent="." unique_id=1504556153]
 layout_mode = 1
@@ -174,6 +279,7 @@ offset_bottom = -4.3200684
 mouse_default_cursor_shape = 2
 script = ExtResource("7_df0lc")
 
+[editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]
 [editable path="HBoxContainer/MarginContainer2/PanelWord"]
 [editable path="HBoxContainer/MarginContainer3/PanelWord"]
