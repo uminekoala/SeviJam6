@@ -140,7 +140,7 @@ layout_mode = 2
 visible = false
 text = "¬#~€@~€@"
 rgb_value = Color(0, 1, 0, 1)
-id = 2
+id = 999
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer" unique_id=1348050489]
 layout_mode = 2
@@ -152,7 +152,7 @@ layout_mode = 2
 [node name="Words" parent="HBoxContainer/MarginContainer4/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(463283630, 868865974) index="0" unique_id=343419220]
 text = "UTH"
 rgb_value = Color(0.4862745, 0.53333336, 0.49411765, 1)
-id = 3
+id = 2
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer" unique_id=751890386]
 layout_mode = 2
@@ -164,7 +164,7 @@ layout_mode = 2
 [node name="Words" parent="HBoxContainer/MarginContainer5/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(524969316, 868865974) index="0" unique_id=343419220]
 text = "KAN"
 rgb_value = Color(1, 1, 1, 1)
-id = 4
+id = 3
 
 [node name="OrbClicker" type="Control" parent="." unique_id=1504556153]
 layout_mode = 1

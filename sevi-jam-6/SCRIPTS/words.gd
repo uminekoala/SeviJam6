@@ -16,24 +16,42 @@ var is_animated = false
 func _ready() -> void:
 	Global.connect("revert_all_words", on_revert_all_words)
 	Global.connect("play_word_correct_animation", on_play_word_correct_animation)
-	for c in text:
-		array_letters.append(c)
-	array_letters = unique_array(array_letters)
-	array_letters.sort()
-	for a in array_letters:
-		dict_animated_letters[a] = false
-
-	add_theme_color_override("default_color",rgb_value)
+	Global.connect("prepare_new_state_on_word", on_prepare_new_state_on_word)
 
 	timer.wait_time = 8.0
 	timer.one_shot = true
 	add_child(timer)
 	timer.timeout.connect(_on_timer_timeout)
 
+	start()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
+
+func start() -> void:
+	is_solved = false
+	original_text = text
+	array_letters = []
+	dict_animated_letters = {}
+	array_pressed_letters = []
+
+	for c in original_text:
+		array_letters.append(c)
+	array_letters = unique_array(array_letters)
+	array_letters.sort()
+
+	for a in array_letters:
+		dict_animated_letters[a] = false
+		
+	add_theme_color_override("default_color",rgb_value)
+
+
+func on_prepare_new_state_on_word() -> void:
+	start()
+	_on_timer_timeout()
+
 
 func unique_array(arr: Array) -> Array:
 	var dict := {}
