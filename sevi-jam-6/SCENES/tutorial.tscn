@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cdhvheplan0y4"]
+
+[ext_resource type="Script" uid="uid://0ypmro6h3w7q" path="res://SCENES/tutorial.gd" id="1_8lu41"]
+[ext_resource type="PackedScene" uid="uid://8t6vpopy5qup" path="res://SCENES/escena_orbe.tscn" id="2_8lu41"]
+[ext_resource type="PackedScene" uid="uid://ck2b7kgnylb14" path="res://SCENES/escena_lucrecio.tscn" id="3_qpppf"]
+
+[node name="Control" type="Control" unique_id=1105176716]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8lu41")
+
+[node name="TextureRect" type="ColorRect" parent="." unique_id=626468634]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0
+offset_right = -0.92004395
+offset_bottom = -1.0
+color = Color(0, 0, 0, 1)
+
+[node name="escena_orbe" parent="." unique_id=177406260 instance=ExtResource("2_8lu41")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="escena_lucrecio" parent="." unique_id=939026764 instance=ExtResource("3_qpppf")]
+layout_mode = 1

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddw87ms0na24s"]
+
+[ext_resource type="AudioStream" uid="uid://dckkrjta5etoi" path="res://ASSETS/looplicator__82-bpm-industrial-ambient-loop.wav" id="1_g0fs8"]
+
+[node name="ambiental" type="AudioStreamPlayer" unique_id=639353085]
+stream = ExtResource("1_g0fs8")
+autoplay = true
