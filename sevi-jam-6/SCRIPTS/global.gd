@@ -10,9 +10,12 @@ var rgb_total = Color()
 var array_id = []
 var dict_id_correct = {}
 var is_gameplay = true #debug
+var orb_array_colors = [Color(Color.hex(0x00001a),1), Color(Color.hex(0x000000),1), Color(Color.hex(0x000000),1)]
+var can_unpaint_orb = false 
 signal word_solved(rgb_value, id, is_correct)
 signal word_unsolved(rgb_value,id)
 signal paint_orb(rgb_value)
+signal unpaint_orb(rgb_value)
 signal revert_all_words(array_id)
 signal play_word_correct_animation(array_id)
 signal play_state(state)
@@ -64,6 +67,7 @@ func next_state() -> void:
 			god_true_veredict = false
 	
 	if !god_true_veredict:
+		can_unpaint_orb = true
 		revert_all_words.emit(array_id)
 		array_id = []
 		rgb_array = []

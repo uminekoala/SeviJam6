@@ -78,6 +78,9 @@ func on_letter_pressed(letter: String) -> void:
 	if array_pressed_letters.has(letter):
 		pass
 	if original_text.contains(letter):
+		if (Global.can_unpaint_orb):
+			Global.unpaint_orb.emit(Global.orb_array_colors)
+			Global.can_unpaint_orb = false
 		animate_such_letter(letter)
 		array_pressed_letters.append(letter)
 		array_pressed_letters = unique_array(array_pressed_letters)
