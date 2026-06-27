@@ -196,6 +196,10 @@ metadata/_edit_lock_ = true
 layout_mode = 1
 metadata/_edit_lock_ = true
 
+[node name="DialogueLucrecio" parent="." unique_id=991737611 instance=ExtResource("9_ab6ae")]
+visible = false
+layout_mode = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1836792828]
 layout_mode = 1
 anchors_preset = -1
@@ -216,7 +220,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(685837623, 868865974) index="0" unique_id=343419220]
-text = "TIC"
+text = ""
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=479259117]
 layout_mode = 2
@@ -226,7 +230,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer2/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1953935624, 868865974) index="0" unique_id=343419220]
-text = "ZAS"
+text = ""
 rgb_value = Color(1, 0, 0, 1)
 id = 1
 
@@ -251,7 +255,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer4/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(463283630, 868865974) index="0" unique_id=343419220]
-text = "UTH"
+text = ""
 rgb_value = Color(0.4862745, 0.53333336, 0.49411765, 1)
 id = 2
 
@@ -263,7 +267,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer5/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(524969316, 868865974) index="0" unique_id=343419220]
-text = "KAN"
+text = ""
 rgb_value = Color(1, 1, 1, 1)
 id = 3
 
@@ -279,10 +283,6 @@ offset_right = 0.5998535
 offset_bottom = -4.3200684
 mouse_default_cursor_shape = 2
 script = ExtResource("7_df0lc")
-
-[node name="DialogueLucrecio" parent="." unique_id=991737611 instance=ExtResource("9_ab6ae")]
-visible = false
-layout_mode = 1
 
 [editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]
