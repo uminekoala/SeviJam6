@@ -17,20 +17,21 @@ script = ExtResource("1_pcus0")
 
 [node name="cuadro" type="NinePatchRect" parent="." unique_id=2128455057]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -65.5
-offset_right = -13.0
-offset_bottom = 67.0
+anchors_preset = -1
+anchor_top = -0.46400002
+anchor_right = 0.96800005
+anchor_bottom = 1.3310001
+offset_top = 0.05000305
+offset_right = -6.1035156e-05
+offset_bottom = 0.049987793
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_h0l8x")
 region_rect = Rect2(50.75592, 2.84346, 723.55115, 696.16125)
-patch_margin_left = 188
-patch_margin_top = 224
-patch_margin_right = 186
-patch_margin_bottom = 163
+patch_margin_left = 184
+patch_margin_top = 209
+patch_margin_right = 182
+patch_margin_bottom = 150
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 

@@ -17,13 +17,16 @@ func _ready() -> void:
 	Global.connect("play_state", on_play_state)
 	Global.connect("unpaint_orb", on_unpaint_orb)
 	Global.connect("state_dialogue",on_state_dialogue)
-	on_play_state(0)
-
+	init_gameplay()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
+func init_gameplay():
+	on_state_dialogue(0)
+	#on_play_state(0)
 
 func on_unpaint_orb(array_colors: Array) -> void:
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC', array_colors[2])
@@ -58,10 +61,12 @@ func on_play_state(state: int):
 		# ... 
 	Global.prepare_new_state_on_word.emit()
 	on_paint_portal(current_portal_colors)
-	instantiate_lucrecio_dialogue(state)
+
 
 func on_state_dialogue(state: int) -> void:
 	instantiate_lucrecio_dialogue(state)
+	Global.can_pass_dialogue = true
+
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
 	lucrecio_scene.visible = true
