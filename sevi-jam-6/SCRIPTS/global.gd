@@ -13,6 +13,7 @@ var is_gameplay = true #debug
 var orb_array_colors = [Color(Color.hex(0x00001a),1), Color(Color.hex(0x000000),1), Color(Color.hex(0x000000),1)]
 var can_unpaint_orb = false 
 var can_pass_dialogue = false
+var can_touch_orb = false
 
 var array_dialogue_states = [["Soy el dialogo del primer state. Está guapo eh?","Pero un momento, pero si es Zaakori!","QUÉ ES LO QUE TENGO QUE HACER?"], ["No te creo, lo hsa hecho, esto es el dialogo del state 2"]]
 var array_dialogue_fail = ["AY LMAO", "UPS.", "AAAAAAAAA", "COMO"]
@@ -31,7 +32,7 @@ signal prepare_new_state_on_word()
 signal state_dialogue(state)
 signal mouse_feedback()
 signal stop_mouse_feedback()
-signal hum_increase()
+signal hum_increase(tone)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

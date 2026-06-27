@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cii8o7e6vn7bh" path="res://SCRIPTS/orb_clicker.gd" id="7_df0lc"]
 [ext_resource type="PackedScene" uid="uid://cj882eaqnodjo" path="res://SCENES/dialogue_lucrecio.tscn" id="9_ab6ae"]
 [ext_resource type="PackedScene" uid="uid://dctpjrkwatl0b" path="res://SCENES/hum_sound.tscn" id="10_ceyew"]
+[ext_resource type="AudioStream" uid="uid://dnfkyndb0kwux" path="res://ASSETS/yay_sound.wav" id="11_o4jo6"]
 
 [sub_resource type="Shader" id="Shader_h2jjw"]
 code = "shader_type canvas_item;
@@ -292,6 +293,9 @@ script = ExtResource("7_df0lc")
 stream = SubResource("AudioStreamMP3_ceyew")
 volume_db = 20.0
 attenuation = 2.219139
+
+[node name="YaySound" type="AudioStreamPlayer" parent="." unique_id=693626238]
+stream = ExtResource("11_o4jo6")
 
 [editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]
