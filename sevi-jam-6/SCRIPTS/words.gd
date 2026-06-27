@@ -77,7 +77,7 @@ func _on_timer_timeout() -> void:
 
 
 func on_letter_pressed(letter: String) -> void:
-	if array_pressed_letters.has(letter):
+	if array_pressed_letters.has(letter) || !timer.is_stopped():
 		pass
 	if original_text.contains(letter):
 		if (Global.can_unpaint_orb):
