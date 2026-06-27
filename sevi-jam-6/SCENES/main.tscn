@@ -317,6 +317,7 @@ bus = &"hum"
 
 [node name="MouseSound" type="AudioStreamPlayer2D" parent="." unique_id=963843135]
 stream = ExtResource("15_7p5hq")
+volume_db = 10.0
 bus = &"hum"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1093745915]
