@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://tlqw8kfl6b2x" path="res://ASSETS/hum_2.wav" id="13_7p5hq"]
 [ext_resource type="AudioStream" uid="uid://byrgqktrvq63a" path="res://ASSETS/hmm_3.wav" id="14_dtswy"]
 [ext_resource type="AudioStream" uid="uid://ddjmse14dty55" path="res://ASSETS/hum.mp3" id="15_7p5hq"]
+[ext_resource type="AudioStream" uid="uid://3rbpmnlpweqm" path="res://ASSETS/fallo_2.wav" id="16_dtswy"]
 
 [sub_resource type="Shader" id="Shader_o4jo6"]
 code = "shader_type canvas_item;
@@ -324,6 +325,10 @@ bus = &"hum"
 stream = SubResource("AudioStreamWAV_7p5hq")
 volume_db = -2.766
 autoplay = true
+
+[node name="FailSound" type="AudioStreamPlayer2D" parent="." unique_id=1687632997]
+stream = ExtResource("16_dtswy")
+volume_db = 15.0
 
 [editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]

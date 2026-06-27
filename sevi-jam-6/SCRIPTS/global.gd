@@ -17,7 +17,7 @@ var can_touch_orb = false
 
 var array_dialogue_states = [["Soy el dialogo del primer state. Está guapo eh?","Pero un momento, pero si es Zaakori!","QUÉ ES LO QUE TENGO QUE HACER?"], ["No te creo, lo hsa hecho, esto es el dialogo del state 2"],["Llegamos al tercero"],["four baby"],["ACEPTA TU DESTINO"],["oleeeeeee"]]
 var array_dialogue_fail = ["AY LMAO", "UPS.", "AAAAAAAAA", "COMO"]
-var array_dialogue_tutorial = []
+var array_dialogue_fail_tutorial = ["Debería concentrarme más en la esencia de las palabras. Su color.", "Cerca, estuve cerca.", "Orbe, amigo mío, no me abandones tú también. Guíame.", "He de concentrarme en la esencia del portal y encontrar una solución."]
 
 var current_line_dialogue = 0
 

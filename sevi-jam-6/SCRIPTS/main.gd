@@ -84,7 +84,6 @@ func check_to_hum_increase(tone: int) -> void:
 
 			
 func on_unpaint_orb(array_colors: Array) -> void:
-	
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC', array_colors[2])
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorA',array_colors[0])
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorB',array_colors[1])
@@ -156,8 +155,12 @@ func on_failed_dialogue() -> void:
 
 func instantiate_failed_dialogue() -> void:
 	lucrecio_scene.visible = true
-	var rango = randi_range(0,Global.array_dialogue_fail.size()-1)
-	lucrecio_scene.update_text(Global.array_dialogue_fail[rango])
+	if (Global.current_state == 0):
+		var rango = randi_range(0,Global.array_dialogue_fail_tutorial.size()-1)
+		lucrecio_scene.update_text(Global.array_dialogue_fail_tutorial[rango])
+	else:
+		var rango = randi_range(0,Global.array_dialogue_fail.size()-1)
+		lucrecio_scene.update_text(Global.array_dialogue_fail[rango])
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
 	lucrecio_scene.visible = true
