@@ -30,6 +30,7 @@ signal play_word_correct_animation(array_id)
 signal play_state(state)
 signal prepare_new_state_on_word()
 signal state_dialogue(state)
+signal next_state_feedback()
 signal mouse_feedback()
 signal stop_mouse_feedback()
 signal hum_increase(tone)
@@ -92,5 +93,6 @@ func next_state() -> void:
 		print("next state!")
 		current_state += 1
 		state_dialogue.emit(current_state)
+		next_state_feedback.emit()
 		#play_state.emit(current_state)
 	

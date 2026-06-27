@@ -31,7 +31,15 @@ func _process(_delta: float) -> void:
 	if (Global.is_gameplay):
 		add_theme_color_override("default_color",rgb_value)
 	elif (!is_solved):
+		text = original_text
 		add_theme_color_override("default_color",Color.WHITE)
+
+func _unhandled_key_input(event):
+	if Global.is_gameplay && Global.can_touch_orb:
+		if event is InputEventKey and event.is_pressed():
+			on_letter_pressed(event.as_text_key_label())
+		elif event is InputEventKey and event.is_released():
+			on_letter_released(event.as_text_key_label())
 
 func start() -> void:
 	is_solved = false
@@ -48,23 +56,16 @@ func start() -> void:
 	for a in array_letters:
 		dict_animated_letters[a] = false
 
+
 func on_prepare_new_state_on_word() -> void:
 	start()
 	_on_timer_timeout()
-
 
 func unique_array(arr: Array) -> Array:
 	var dict := {}
 	for a in arr:
 		dict[a] = 1
 	return dict.keys()
-
-func _unhandled_key_input(event):
-	if Global.is_gameplay:
-		if event is InputEventKey and event.is_pressed():
-			on_letter_pressed(event.as_text_key_label())
-		elif event is InputEventKey and event.is_released():
-			on_letter_released(event.as_text_key_label())
 
 func _on_timer_timeout() -> void:
 	# funciona tambien como un reset
@@ -74,7 +75,6 @@ func _on_timer_timeout() -> void:
 	for i in dict_animated_letters:
 		dict_animated_letters[i] = false
 	#Global.on_word_unsolved(rgb_value, id)
-
 
 func on_letter_pressed(letter: String) -> void:
 	if array_pressed_letters.has(letter) || !timer.is_stopped():
@@ -117,19 +117,29 @@ func on_letter_released(letter: String) -> void:
 		array_pressed_letters = unique_array(array_pressed_letters)
 		array_pressed_letters.sort()
 		array_pressed_letters.erase(letter)
-		text = original_text
+		deanimate_such_letter(letter)
 		dict_animated_letters[letter] = false
 
+func deanimate_such_letter(letter: String) -> void:
+	if original_text.contains(letter):
+		for i in text.length():
+			if letter == text[i]:
+				var what = "[wave amp=100.0 freq=15.0 connected=1]"+text[i]+"[/wave]"
+				var indx = text.find(what)
+				if (indx != -1):
+					text = text.substr(0,indx)+letter+text.substr(indx+what.length())
+					break
+			
 
 func animate_such_letter(letter: String) -> void:
-	for i in text.length():
-		if letter == text[i]:
-			if !dict_animated_letters[letter]:
-				var substring1 = text.substr(0, i)
-				var substring2 = text.substr(i,text.length())
-				var animated = "[wave amp=100.0 freq=15.0 connected=1]"
-				text = substring1 + animated + substring2[0] + "[/wave]" + substring2.substr(1,-1)
-				dict_animated_letters[letter] = true
+		for i in text.length():
+			if letter == text[i]:
+				if !dict_animated_letters[letter]:
+					var substring1 = text.substr(0, i)
+					var substring2 = text.substr(i,text.length())
+					var animated = "[wave amp=100.0 freq=15.0 connected=1]" # 38 characters
+					text = substring1 + animated + substring2[0] + "[/wave]" + substring2.substr(1,-1)
+					dict_animated_letters[letter] = true
 
 
 func on_revert_all_words(array_id: Array) -> void:

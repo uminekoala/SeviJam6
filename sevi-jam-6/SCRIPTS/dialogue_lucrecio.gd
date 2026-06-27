@@ -11,15 +11,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action") && Global.can_pass_dialogue:
-		Global.current_line_dialogue += 1
-		if (Global.current_line_dialogue >= Global.array_dialogue_states.size()):
-			Global.play_state.emit(Global.current_state)
-			visible = false
-			Global.can_pass_dialogue = false
-			Global.can_touch_orb = true
-			$dialogue/AudioStreamPlayer.stop()
+		if ($dialogue/texto.visible_ratio != 1):
+			$dialogue.irse = true
 		else:
-			update_text(Global.array_dialogue_states[Global.current_state][Global.current_line_dialogue])
+			Global.current_line_dialogue += 1
+			if (Global.current_line_dialogue >= Global.array_dialogue_states.size()):
+				Global.play_state.emit(Global.current_state)
+				visible = false
+				Global.can_pass_dialogue = false
+				Global.can_touch_orb = true
+				$dialogue/AudioStreamPlayer.stop()
+			else:
+				update_text(Global.array_dialogue_states[Global.current_state][Global.current_line_dialogue])
 
 
 
