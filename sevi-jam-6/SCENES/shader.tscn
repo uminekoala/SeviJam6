@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bd2pjkk05toev"]
+
+[ext_resource type="Shader" uid="uid://dxm5rumswrxt6" path="res://SHADER/planet_coffee.gdshader" id="1_vlaif"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajtct"]
+shader = ExtResource("1_vlaif")
+shader_parameter/colorA = Color(0.028229166, 0.11931767, 0, 1)
+shader_parameter/colorB = Color(0.26695138, 0.5316722, 3.85046e-07, 1)
+shader_parameter/colorC = Color(0.19291472, 0.6818135, 0, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 1.0
+
+[node name="shader" type="Control" unique_id=1191469079]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1388564046]
+material = SubResource("ShaderMaterial_ajtct")
+layout_mode = 0
+offset_left = 592.0
+offset_top = 142.0
+offset_right = 1278.0
+offset_bottom = 1082.0
