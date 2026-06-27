@@ -12,6 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action") && Global.can_pass_dialogue:
 		Global.current_line_dialogue += 1
+		if (current_line_dialogue >= array_dialogue_states[Global.current_state]):
+			
 		update_text(Global.array_dialogue_states[Global.current_state][Global.current_line_dialogue])
 
 
