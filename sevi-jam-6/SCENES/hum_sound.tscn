@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dctpjrkwatl0b"]
 
-[ext_resource type="AudioStream" uid="uid://d3ninx0t57mf3" path="res://ASSETS/hum.wav" id="1_04427"]
+[ext_resource type="AudioStream" uid="uid://b64p3141o7ebu" path="res://ASSETS/urgh_2.wav" id="1_04427"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=293356130]
+[node name="HumSound" type="AudioStreamPlayer2D" unique_id=979741265]
 stream = ExtResource("1_04427")
-autoplay = true
+volume_db = 10.0

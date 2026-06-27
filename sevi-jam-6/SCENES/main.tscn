@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b8661bv6rht3u"]
+[gd_scene format=4 uid="uid://b8661bv6rht3u"]
 
 [ext_resource type="Script" uid="uid://cnl2fxijtk84v" path="res://SCRIPTS/main.gd" id="1_xh1h4"]
 [ext_resource type="PackedScene" uid="uid://bkw5n5or2fn65" path="res://SCENES/panel_word.tscn" id="2_ac0l5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://8t6vpopy5qup" path="res://SCENES/escena_orbe.tscn" id="5_h2jjw"]
 [ext_resource type="Script" uid="uid://cii8o7e6vn7bh" path="res://SCRIPTS/orb_clicker.gd" id="7_df0lc"]
 [ext_resource type="PackedScene" uid="uid://cj882eaqnodjo" path="res://SCENES/dialogue_lucrecio.tscn" id="9_ab6ae"]
+[ext_resource type="PackedScene" uid="uid://dctpjrkwatl0b" path="res://SCENES/hum_sound.tscn" id="10_ceyew"]
 
 [sub_resource type="Shader" id="Shader_h2jjw"]
 code = "shader_type canvas_item;
@@ -123,6 +124,17 @@ shader_parameter/colorC = Color(0.19291472, 0.6818135, 0, 1)
 shader_parameter/discomode = false
 shader_parameter/speed = 1.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bviin"]
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_ceyew"]
+data = PackedByteArray("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")
+format = 3
+loop_mode = 1
+loop_begin = 400
+loop_end = 1350
+mix_rate = 8000
+stereo = true
+
 [node name="Main" type="Control" unique_id=1683322235]
 layout_mode = 3
 anchors_preset = 15
@@ -226,12 +238,11 @@ text = ""
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelWord" parent="HBoxContainer/MarginContainer2" unique_id=1953935624 instance=ExtResource("2_ac0l5")]
+[node name="PanelWord" parent="HBoxContainer/MarginContainer2" unique_id=838267298 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
 
-[node name="Words" parent="HBoxContainer/MarginContainer2/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1953935624, 868865974) index="0" unique_id=343419220]
+[node name="Words" parent="HBoxContainer/MarginContainer2/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(838267298, 868865974) index="0" unique_id=343419220]
 text = ""
-rgb_value = Color(1, 0, 0, 1)
 id = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=193801468]
@@ -240,6 +251,7 @@ size_flags_horizontal = 3
 
 [node name="PanelWord" parent="HBoxContainer/MarginContainer3" unique_id=1413510630 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bviin")
 
 [node name="Words" parent="HBoxContainer/MarginContainer3/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1413510630, 868865974) index="0" unique_id=343419220]
 visible = false
@@ -251,24 +263,22 @@ id = 999
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelWord" parent="HBoxContainer/MarginContainer4" unique_id=463283630 instance=ExtResource("2_ac0l5")]
+[node name="PanelWord" parent="HBoxContainer/MarginContainer4" unique_id=640584118 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
 
-[node name="Words" parent="HBoxContainer/MarginContainer4/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(463283630, 868865974) index="0" unique_id=343419220]
+[node name="Words" parent="HBoxContainer/MarginContainer4/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(640584118, 868865974) index="0" unique_id=343419220]
 text = ""
-rgb_value = Color(0.4862745, 0.53333336, 0.49411765, 1)
 id = 2
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer" unique_id=751890386]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelWord" parent="HBoxContainer/MarginContainer5" unique_id=524969316 instance=ExtResource("2_ac0l5")]
+[node name="PanelWord" parent="HBoxContainer/MarginContainer5" unique_id=894558101 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
 
-[node name="Words" parent="HBoxContainer/MarginContainer5/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(524969316, 868865974) index="0" unique_id=343419220]
+[node name="Words" parent="HBoxContainer/MarginContainer5/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(894558101, 868865974) index="0" unique_id=343419220]
 text = ""
-rgb_value = Color(1, 1, 1, 1)
 id = 3
 
 [node name="OrbClicker" type="Control" parent="." unique_id=1504556153]
@@ -283,6 +293,10 @@ offset_right = 0.5998535
 offset_bottom = -4.3200684
 mouse_default_cursor_shape = 2
 script = ExtResource("7_df0lc")
+
+[node name="HumSound" parent="." unique_id=979741265 instance=ExtResource("10_ceyew")]
+stream = SubResource("AudioStreamWAV_ceyew")
+pitch_scale = 1.64
 
 [editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]
