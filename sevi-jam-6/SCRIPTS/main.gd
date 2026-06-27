@@ -5,6 +5,9 @@ var dict_words_1 = { "NAR":Color.GREEN, "ANJ":Color.VIOLET, "ITA":Color.PINK, "J
 var array_portal_colors_0 = [Color(0.1,0.1,0.6,1),Color(0.45,0.1,0.8,1), Color.PURPLE]
 var array_portal_colors_1 = [Color(0.4,0.4,1,1),Color(0.9,0.9,0,1), Color.YELLOW]
 var current_portal_colors
+
+var current_tone = 0 as int
+
 @onready var lucrecio_scene := get_node("DialogueLucrecio") as DialogueLucrecio
 #array de arrays de modo que el array 1 son los dialogos del primer state que se reproducen en orden.
 
@@ -19,6 +22,7 @@ func _ready() -> void:
 	Global.connect("state_dialogue",on_state_dialogue)
 	Global.connect("mouse_feedback",on_mouse_feedback)
 	Global.connect("stop_mouse_feedback",on_stop_mouse_feedback)
+	Global.connect("word_solved", on_word_solved_sound_feedback)
 	
 	init_gameplay()
 	
@@ -27,9 +31,29 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+func _unhandled_key_input(event):
+	if Global.is_gameplay:
+		if event is InputEventKey and event.is_pressed():
+			current_tone += 1
+			check_to_hum_increase(current_tone)
+		elif event is InputEventKey and event.is_released():
+			current_tone = 0
+
+
 func init_gameplay():
 	on_state_dialogue(0)
 	#on_play_state(0)
+
+
+func check_to_hum_increase(tone: int) -> void:
+	match (tone):
+		0:
+			pass
+		1:
+			pass
+		2:
+			pass
+
 
 func on_unpaint_orb(array_colors: Array) -> void:
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC', array_colors[2])
@@ -69,6 +93,7 @@ func on_play_state(state: int):
 func on_state_dialogue(state: int) -> void:
 	instantiate_lucrecio_dialogue(state)
 	Global.can_pass_dialogue = true
+	Global.can_touch_orb = false
 
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
@@ -82,6 +107,13 @@ func on_mouse_feedback() -> void:
 
 func on_stop_mouse_feedback() -> void:
 	$HumSound.stop()
+
+func on_word_solved_sound_feedback(rgb: Color, id: int, is_correct: bool) -> void:
+	if ($YaySound.playing):
+		pass
+	else:
+		$YaySound.stop()
+		$YaySound.play()
 
 func prepare_words(dict_words: Dictionary) -> void:
 	var i = 0
