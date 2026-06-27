@@ -17,6 +17,7 @@ func _ready() -> void:
 	Global.connect("play_state", on_play_state)
 	Global.connect("unpaint_orb", on_unpaint_orb)
 	Global.connect("state_dialogue",on_state_dialogue)
+	Global.connect("mouse_feedback",on_mouse_feedback)
 	init_gameplay()
 	
 
@@ -73,7 +74,8 @@ func instantiate_lucrecio_dialogue(state: int) -> void:
 	lucrecio_scene.update_text(Global.array_dialogue_states[state][0])
 	
 
-	
+func on_mouse_feedback() -> void:
+	$HumSound.play()
 
 func prepare_words(dict_words: Dictionary) -> void:
 	var i = 0

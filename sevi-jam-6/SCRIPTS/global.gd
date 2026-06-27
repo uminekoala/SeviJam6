@@ -29,6 +29,7 @@ signal play_word_correct_animation(array_id)
 signal play_state(state)
 signal prepare_new_state_on_word()
 signal state_dialogue(state)
+signal mouse_feedback()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
