@@ -16,6 +16,7 @@ func _ready() -> void:
 	Global.connect("paint_orb", on_paint_orb)
 	Global.connect("play_state", on_play_state)
 	Global.connect("unpaint_orb", on_unpaint_orb)
+	Global.connect("state_dialogue",on_state_dialogue)
 	on_play_state(0)
 
 
@@ -59,10 +60,12 @@ func on_play_state(state: int):
 	on_paint_portal(current_portal_colors)
 	instantiate_lucrecio_dialogue(state)
 
+func on_state_dialogue(state: int) -> void:
+	instantiate_lucrecio_dialogue(state)
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
 	lucrecio_scene.visible = true
-	lucrecio_scene.update_text(array_dialogue_states[state][0])
+	lucrecio_scene.update_text(Global.array_dialogue_states[state][0])
 	
 
 	
