@@ -113,10 +113,10 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wrtyo"]
 shader = SubResource("Shader_h2jjw")
-shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
-shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
-shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
-shader_parameter/discomode = true
+shader_parameter/colorA = Color(0.052013412, 7.460266e-07, 0.327325, 1)
+shader_parameter/colorB = Color(0.81374687, 1.5883148e-06, 0.47421807, 1)
+shader_parameter/colorC = Color(0, 0.591674, 0.9492765, 1)
+shader_parameter/discomode = false
 shader_parameter/speed = 1.0
 
 [sub_resource type="Animation" id="Animation_3ft3y"]
@@ -185,6 +185,43 @@ _data = {
 &"zoom2": SubResource("Animation_4n1iw")
 }
 
+[sub_resource type="Animation" id="Animation_wrtyo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3prf7"]
+resource_name = "opacidad"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vtfp"]
+_data = {
+&"RESET": SubResource("Animation_wrtyo"),
+&"opacidad": SubResource("Animation_3prf7")
+}
+
 [node name="finale" type="Control" unique_id=774468335]
 layout_mode = 3
 anchors_preset = 15
@@ -244,5 +281,18 @@ script = ExtResource("4_faith")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2098821899]
 stream = ExtResource("5_3ft3y")
 autoplay = true
+
+[node name="fundido" type="ColorRect" parent="." unique_id=33423013]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99200004
+anchor_bottom = 0.99300003
+offset_right = 7.3598633
+offset_bottom = 7.5599365
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fundido" unique_id=1615358022]
+libraries/ = SubResource("AnimationLibrary_0vtfp")
 
 [editable path="ShaderPortal"]

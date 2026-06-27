@@ -12,6 +12,9 @@ func _ready() -> void:
 	add_trauma(0.1)
 	get_node("../PortalBordes/AnimationPlayer").play("zoom")
 	get_node("../Nebulosa/AnimationPlayer").play("zoom2")
+	get_node("../fundido/AnimationPlayer").play("opacidad")
+	await get_tree().create_timer(10).timeout
+	trauma = 0
 	
 
 func _process(delta: float) -> void:
