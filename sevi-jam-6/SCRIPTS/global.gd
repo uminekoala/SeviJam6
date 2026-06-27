@@ -17,7 +17,7 @@ var can_touch_orb = false
 
 var array_dialogue_states = [["Esto es inaudito... completamente inconcebible.","Tengo que salir de aquí. No, [shake]debo[/shake] salir de aquí.","Primero tengo que concentrarme en el [color=violet]orbe[/color]. Será mi guía.","He de [color=violet]presionarlo[/color] con todas mis fuerzas.","Si pierdo la concentración, no podré lanzar hechizos...","Será mejor que no suelte el orbe, en la medida de lo posible.","Y luego, hay que buscar las palabras adecuadas.","Con la mano izquierda tengo que conjurar la palabra al completo.","Si combino la [color=violet]esencia[/color] de dos palabras, de forma que se parezca a la del portal...","Llegaré a casa.","¿Y para qué?"], ["No te creo, lo hsa hecho, esto es el dialogo del state 2"],["Llegamos al tercero"],["four baby"],["ACEPTA TU DESTINO"],["oleeeeeee"]]
 var array_dialogue_fail = ["AY LMAO", "UPS.", "AAAAAAAAA", "COMO"]
-var array_dialogue_tutorial = []
+var array_dialogue_fail_tutorial = ["Debería concentrarme más en la esencia de las palabras. Su color.", "Cerca, estuve cerca.", "Orbe, amigo mío, no me abandones tú también. Guíame.", "He de concentrarme en la esencia del portal y encontrar una solución."]
 
 var current_line_dialogue = 0
 
@@ -35,6 +35,7 @@ signal next_state_feedback()
 signal mouse_feedback()
 signal stop_mouse_feedback()
 signal hum_increase(tone)
+signal fail_sound_feedback()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -83,6 +84,7 @@ func next_state() -> void:
 		can_unpaint_orb = true
 		failed_dialogue.emit()
 		revert_all_words.emit(array_id)
+		fail_sound_feedback.emit()
 		array_id = []
 		rgb_array = []
 		dict_id_correct = {}

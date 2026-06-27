@@ -11,7 +11,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action") && Global.can_pass_dialogue:
-		if ($dialogue/texto.visible_ratio != 1):
+		if ($dialogue/texto.visible_ratio != 1 && !$dialogue/texto.text.contains("[")):
 			$dialogue.irse = true
 		else:
 			Global.current_line_dialogue += 1
