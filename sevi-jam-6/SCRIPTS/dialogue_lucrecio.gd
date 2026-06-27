@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 			$dialogue.irse = true
 		else:
 			Global.current_line_dialogue += 1
-			if (Global.current_line_dialogue >= Global.array_dialogue_states.size()):
+			if (Global.current_line_dialogue >= Global.array_dialogue_states[Global.current_state].size()):
 				Global.play_state.emit(Global.current_state)
 				visible = false
 				Global.can_pass_dialogue = false

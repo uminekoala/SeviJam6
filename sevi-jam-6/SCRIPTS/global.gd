@@ -15,7 +15,7 @@ var can_unpaint_orb = false
 var can_pass_dialogue = false
 var can_touch_orb = false
 
-var array_dialogue_states = [["Soy el dialogo del primer state. Está guapo eh?","Pero un momento, pero si es Zaakori!","QUÉ ES LO QUE TENGO QUE HACER?"], ["No te creo, lo hsa hecho, esto es el dialogo del state 2"]]
+var array_dialogue_states = [["Soy el dialogo del primer state. Está guapo eh?","Pero un momento, pero si es Zaakori!","QUÉ ES LO QUE TENGO QUE HACER?"], ["No te creo, lo hsa hecho, esto es el dialogo del state 2"],["Llegamos al tercero"],["four baby"],["ACEPTA TU DESTINO"],["oleeeeeee"]]
 var array_dialogue_fail = ["AY LMAO", "UPS.", "AAAAAAAAA", "COMO"]
 var array_dialogue_tutorial = []
 
