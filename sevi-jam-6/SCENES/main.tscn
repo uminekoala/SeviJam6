@@ -14,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_xh1h4")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1252218071]
@@ -118,7 +119,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer2/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1953935624, 868865974) index="0" unique_id=343419220]
-text = "RATON"
+text = "HOLA"
 rgb_value = Color(1, 0, 0, 1)
 id = 1
 
@@ -130,7 +131,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Words" parent="HBoxContainer/MarginContainer3/PanelWord/MarginContainer" parent_id_path=PackedInt32Array(1413510630, 868865974) index="0" unique_id=343419220]
-text = ""
+visible = false
+text = "¬#~€@~€@"
 rgb_value = Color(0, 1, 0, 1)
 id = 2
 
