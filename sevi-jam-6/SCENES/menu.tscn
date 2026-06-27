@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dxkul4qx04d6h" path="res://SCRIPTS/menu.gd" id="1_qnims"]
 [ext_resource type="Texture2D" uid="uid://b7jwdabd3v8ac" path="res://ASSETS/FONDO.png" id="2_mawtk"]
 [ext_resource type="FontFile" uid="uid://bdqavmwjijefq" path="res://ASSETS/IMMORTAL.ttf" id="2_vbyvk"]
+[ext_resource type="PackedScene" uid="uid://ddw87ms0na24s" path="res://SCENES/musica_ambiente.tscn" id="4_mawtk"]
 
 [sub_resource type="Theme" id="Theme_ostoq"]
 default_font = ExtResource("2_vbyvk")
@@ -41,6 +42,8 @@ offset_bottom = 9.399963
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=980916241]
 layout_mode = 2
+size_flags_stretch_ratio = 1.6
+theme_override_constants/separation = 30
 alignment = 1
 metadata/_edit_lock_ = true
 
@@ -55,7 +58,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 theme = SubResource("Theme_ostoq")
 theme_override_fonts/font = ExtResource("2_vbyvk")
-text = "Créditos"
+text = "Información"
 metadata/_edit_lock_ = true
 
 [node name="salir" type="Button" parent="MarginContainer/VBoxContainer" unique_id=626633582]
@@ -64,6 +67,8 @@ theme = SubResource("Theme_ostoq")
 theme_override_fonts/font = ExtResource("2_vbyvk")
 text = "Salir"
 metadata/_edit_lock_ = true
+
+[node name="ambiental" parent="." unique_id=639353085 instance=ExtResource("4_mawtk")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]

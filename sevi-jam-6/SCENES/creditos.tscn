@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvholokodwktq"]
 
 [ext_resource type="FontFile" uid="uid://bdqavmwjijefq" path="res://ASSETS/IMMORTAL.ttf" id="1_8vban"]
+[ext_resource type="Script" uid="uid://dtneyl457ri5v" path="res://SCRIPTS/creditos.gd" id="1_iyocs"]
 [ext_resource type="Texture2D" uid="uid://b7jwdabd3v8ac" path="res://ASSETS/FONDO.png" id="1_qc7s2"]
 
 [node name="credits" type="Control" unique_id=1607606361]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iyocs")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=139608205]
 layout_mode = 0
@@ -36,11 +38,14 @@ text = "[wave]Kafka[/wave]"
 scroll_active = false
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2069809272]
-layout_mode = 0
-offset_left = 789.0
-offset_top = 971.0
-offset_right = 1149.0
-offset_bottom = 1014.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99600005
+anchor_bottom = 1.0
+offset_left = 768.0
+offset_top = 904.0
+offset_right = -784.32007
+offset_bottom = -106.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1113996693]
 layout_mode = 2
@@ -50,5 +55,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8vban")
 theme_override_font_sizes/font_size = 50
-text = "Salir"
+text = "Atrás"
 metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/salir" to="." method="_on_salir_pressed"]
