@@ -12,7 +12,8 @@ func _process(delta: float) -> void:
 
 
 func _input(event) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		Global.is_gameplay = true
-	else:
-		Global.is_gameplay = false
+	pass
+	#if event is InputEventMouseButton and event.pressed:
+		#Global.is_gameplay = true
+	#elif event is InputEventMouseButton and event.is_released:
+		#Global.is_gameplay = false
