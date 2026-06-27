@@ -18,6 +18,8 @@ var array_dialogue_states = [["Soy el dialogo del primer state. Está guapo eh?"
 var array_dialogue_fail = ["AY LMAO", "UPS.", "AAAAAAAAA", "COMO"]
 var array_dialogue_tutorial = []
 
+var current_line_dialogue = 0
+
 signal word_solved(rgb_value, id, is_correct)
 signal word_unsolved(rgb_value,id)
 signal paint_orb(rgb_value)
@@ -26,6 +28,7 @@ signal revert_all_words(array_id)
 signal play_word_correct_animation(array_id)
 signal play_state(state)
 signal prepare_new_state_on_word()
+signal state_dialogue(state)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -85,5 +88,6 @@ func next_state() -> void:
 		dict_id_correct = {}	
 		print("next state!")
 		current_state += 1
-		play_state.emit(current_state)
+		state_dialogue.emit(current_state)
+		#play_state.emit(current_state)
 	
