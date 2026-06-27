@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
-uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
-uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
-uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
+uniform vec3 colorA : source_color = vec3(0.0, 0.0, 0.0);
+uniform vec3 colorB : source_color = vec3(0.0, 0.0, 0.0);
+uniform vec3 colorC : source_color = vec3(0.0, 0.0, 0.0);
 uniform bool discomode = false;
 uniform float speed : hint_range(0.1, 2.0) = 1.0;
 
