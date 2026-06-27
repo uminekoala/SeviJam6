@@ -19,3 +19,4 @@ func _input(event) -> void:
 		Global.mouse_feedback.emit()
 	elif event is InputEventMouseButton and event.is_released:
 		Global.is_gameplay = false
+		Global.stop_mouse_feedback.emit()

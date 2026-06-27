@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 			Global.play_state.emit(Global.current_state)
 			visible = false
 			Global.can_pass_dialogue = false
+			$dialogue/AudioStreamPlayer.stop()
 		else:
 			update_text(Global.array_dialogue_states[Global.current_state][Global.current_line_dialogue])
 

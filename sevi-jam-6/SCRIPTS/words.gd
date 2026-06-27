@@ -83,6 +83,7 @@ func on_letter_pressed(letter: String) -> void:
 			Global.can_unpaint_orb = false
 		animate_such_letter(letter)
 		array_pressed_letters.append(letter)
+		check_to_hum_increase()
 		array_pressed_letters = unique_array(array_pressed_letters)
 		array_pressed_letters.sort()
 		if array_letters.size() <= array_pressed_letters.size():
@@ -106,6 +107,9 @@ func on_letter_pressed(letter: String) -> void:
 		#print(array_pressed_letters)
 		#print("valor")
 		#print(is_solved)
+
+func check_to_hum_increase() -> void:
+	Global.hum_increase.emit(array_pressed_letters.size())
 
 
 func on_letter_released(letter: String) -> void:
