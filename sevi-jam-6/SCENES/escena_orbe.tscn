@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://8t6vpopy5qup"]
+
+[ext_resource type="Texture2D" uid="uid://b32qw7fn40sci" path="res://ASSETS/ORBE_2.png" id="1_v2gjr"]
+
+[sub_resource type="Animation" id="Animation_era5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u3ba8"]
+resource_name = "up_down"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 50), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_62f7r"]
+_data = {
+&"RESET": SubResource("Animation_era5u"),
+&"up_down": SubResource("Animation_u3ba8")
+}
+
+[node name="escena_orbe" type="TextureRect" unique_id=177406260]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OrbColor" type="ColorRect" parent="." unique_id=2021692154]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.71900004
+anchor_top = 0.50600004
+anchor_right = 0.80700004
+anchor_bottom = 0.63100004
+offset_left = 0.51989746
+offset_top = 0.5199585
+offset_right = -0.44006348
+offset_bottom = -0.4800415
+color = Color(0, 0, 0, 1)
+
+[node name="Orbe" type="TextureRect" parent="." unique_id=1745433711]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v2gjr")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=203372967]
+root_node = NodePath("../Orbe")
+libraries/ = SubResource("AnimationLibrary_62f7r")
