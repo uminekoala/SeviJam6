@@ -5,7 +5,7 @@ var dict_words_1 = { "NAR":Color.GREEN, "ANJ":Color.VIOLET, "ITA":Color.PINK, "J
 var array_portal_colors_0 = [Color(0.1,0.1,0.6,1),Color(0.45,0.1,0.8,1), Color.PURPLE]
 var array_portal_colors_1 = [Color(0.4,0.4,1,1),Color(0.9,0.9,0,1), Color.YELLOW]
 var current_portal_colors
-var last_key
+var array_used_keys = []
 var current_tone = 0 as int
 
 @onready var lucrecio_scene := get_node("DialogueLucrecio") as DialogueLucrecio
@@ -34,77 +34,47 @@ func _process(_delta: float) -> void:
 func _unhandled_key_input(event):
 	if Global.is_gameplay:
 		if event is InputEventKey and event.is_pressed():
-			if (last_key == event.as_text_key_label()):
+			if (array_used_keys.has(event.as_text_key_label())):
 				pass
 			else:
-				last_key = event.as_text_key_label()
-				if (current_tone >= 0 && current_tone <= 3):
+				array_used_keys.append(event.as_text_key_label())
+				if (current_tone >= 0 && current_tone < 3):
 					current_tone += 1
 				check_to_hum_increase(current_tone)
 		elif event is InputEventKey and event.is_released():
-			if (current_tone > 0):
-				current_tone -= 1
-			last_key = ""
-			check_to_hun_decrease(current_tone)
+			if (array_used_keys.has(event.as_text_key_label())):
+				array_used_keys.erase(event.as_text_key_label())
+				if (current_tone > 0):
+					current_tone -= 1
+				check_to_hum_increase(current_tone)
 	else:
-		last_key = ""
+		array_used_keys = []
 
 
 func init_gameplay():
 	on_state_dialogue(0)
 	#on_play_state(0)
 
-func check_to_hun_decrease(tone: int) -> void:
-	match (tone):
-		0:
-			$HumSound.stop()
-			$HumSound2.stop()
-			$HumSound3.stop()
-		1:
-			if ($HumSound.playing):
-				pass
-			$HumSound2.stop()
-			$HumSound.play()
-			
-		2:
-			if ($HumSound2.playing):
-				pass
-			$HumSound3.stop()
-			$HumSound2.play()
-		3:
-			if ($HumSound3.playing):
-				pass
-			$HumSound2.stop()
 
 func check_to_hum_increase(tone: int) -> void:
 	print(tone)
+	if ($HumSound.playing):
+		$HumSound.stop()
+	if ($HumSound2.playing):
+		$HumSound2.stop()
+	if ($HumSound3.playing):
+		$HumSound3.stop()
 	match (tone):
 		0:
-			$HumSound.stop()
-			$HumSound2.stop()
-			$HumSound3.stop()
+			pass
 		1:
-			if ($HumSound.playing):
-				pass
-			$HumSound2.stop()
-			$HumSound3.stop()
 			$HumSound.play()
-			
 		2:
-			if ($HumSound2.playing):
-				pass
-			$HumSound.stop()
-			$HumSound3.stop()
 			$HumSound2.play()
 		3:
-			if ($HumSound3.playing):
-				pass
-			$HumSound.stop()
-			$HumSound2.stop()
 			$HumSound3.play()
 
 			
-
 func on_unpaint_orb(array_colors: Array) -> void:
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC', array_colors[2])
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorA',array_colors[0])
