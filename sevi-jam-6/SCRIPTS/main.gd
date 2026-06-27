@@ -1,10 +1,10 @@
 extends Control
 
-var dict_words_0 = { "LUZ":Color.CRIMSON, "DIA":Color.GHOST_WHITE, "AUN":Color.MEDIUM_BLUE, "AMO":Color.GOLD}
+var dict_words_0 = { "VE":Color.CRIMSON, "IR":Color.GHOST_WHITE, "MI":Color.MEDIUM_BLUE, "NO":Color.GOLD}
 var dict_words_1 = { "EGO":Color.MEDIUM_BLUE, "IRA":Color.GOLD, "LEY":Color.DARK_GREEN, "VIL":Color.RED}
 var dict_words_2 = { "AVE":Color.BLACK, "RIO":Color.SPRING_GREEN, "MAR":Color.BLUE, "VOZ":Color.PURPLE}
 var dict_words_3 = { "SIN":Color.DEEP_PINK, "PAR":Color.SKY_BLUE, "DUO":Color.MEDIUM_ORCHID, "TEZ":Color.GHOST_WHITE}
-var dict_words_4 = { "VIA":Color.KHAKI, "PAZ":Color.DARK_GREEN, "ODA":Color.LIGHT_GREEN, "FIN":Color.YELLOW}
+var dict_words_4 = { "VIA":Color(0.49803922, 1, 0.32, 1), "PAZ":Color(0.65, 0.89, 0.7, 1), "ODA":Color.LIGHT_GREEN, "FIN":Color(0.55, 1, 0.3, 1)}
 var array_portal_colors_0 = [Color(0.0, 0.244, 0.305, 1.0),Color(0.392, 0.372, 0.0, 1.0), Color.FOREST_GREEN]
 var array_portal_colors_1 = [Color(0.808, 0.001, 0.811, 1.0),Color(0.941, 0.829, 0.86, 1.0), Color.PURPLE]
 var array_portal_colors_2 = [Color(0.0, 0.085, 0.149, 1.0),Color(0.137, 0.118, 0.827, 1.0), Color.NAVY_BLUE]
