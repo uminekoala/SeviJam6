@@ -68,9 +68,9 @@ void fragment() {
     vec3 col_c = colorC;
     
     if(discomode){
-        col_a = vec3(sin(iTime), sin(iTime + 7.0), cos(iTime));
-        col_b = vec3(cos(iTime), cos(iTime + 7.0), sin(iTime));
-        col_c = vec3(sin(iTime), cos(iTime), sin(iTime + 0.5));
+        col_a = vec3(sin(iTime + 0.5), sin(iTime + 7.0), cos(iTime + 2.0));
+        col_b = vec3(cos(iTime + 0.8), cos(iTime + 7.0), sin(iTime + 3.0));
+        col_c = vec3(sin(iTime + 0.17), cos(iTime + 1.0), sin(iTime + 0.5));
     }
     
     vec2 uv = UV;

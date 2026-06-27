@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://byrgqktrvq63a" path="res://ASSETS/hmm_3.wav" id="14_dtswy"]
 [ext_resource type="AudioStream" uid="uid://ddjmse14dty55" path="res://ASSETS/hum.mp3" id="15_7p5hq"]
 
-[sub_resource type="Shader" id="Shader_h2jjw"]
+[sub_resource type="Shader" id="Shader_o4jo6"]
 code = "shader_type canvas_item;
 
 uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
@@ -122,7 +122,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ab6ae"]
-shader = SubResource("Shader_h2jjw")
+shader = SubResource("Shader_o4jo6")
 shader_parameter/colorA = Color(0.028229166, 0.11931767, 0, 1)
 shader_parameter/colorB = Color(0.26695138, 0.5316722, 3.85046e-07, 1)
 shader_parameter/colorC = Color(0.19291472, 0.6818135, 0, 1)

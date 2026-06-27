@@ -1,0 +1,248 @@
+[gd_scene format=3 uid="uid://basdms6f240d"]
+
+[ext_resource type="PackedScene" uid="uid://bd2pjkk05toev" path="res://SCENES/shader.tscn" id="1_faith"]
+[ext_resource type="Texture2D" uid="uid://bhf7e2h0u3okv" path="res://ASSETS/NEBULOSA_BORDE.png" id="2_3ft3y"]
+[ext_resource type="Texture2D" uid="uid://dqckg2nemmsfy" path="res://ASSETS/PORTAL_BORDES.png" id="3_auhnn"]
+[ext_resource type="Script" uid="uid://dr1baqblat2ve" path="res://SCRIPTS/camera_2d.gd" id="4_faith"]
+[ext_resource type="AudioStream" uid="uid://cts7yf4fmpswx" path="res://ASSETS/7141__mystiscool__avalanche.wav" id="5_3ft3y"]
+
+[sub_resource type="Shader" id="Shader_h2jjw"]
+code = "shader_type canvas_item;
+
+uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
+uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
+uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
+uniform bool discomode = false;
+uniform float speed : hint_range(0.1, 2.0) = 1.0;
+
+#define iTime (TIME * speed)
+
+float rand(vec4 p) {
+    return fract(sin(p.x*1234. + p.y*2345. + p.z*3456. + p.w*4567.) * 5678.);
+}
+
+float smoothnoise(vec4 p) {
+    const vec2 e = vec2(0.0, 1.0);
+    vec4 i = floor(p);    // integer
+    vec4 f = fract(p);    // fract
+    
+    f = f*f*(3. - 2.*f);
+    
+    return mix(mix(mix(mix(rand(i + e.xxxx),
+                           rand(i + e.yxxx), f.x),
+                       mix(rand(i + e.xyxx),
+                           rand(i + e.yyxx), f.x), f.y),
+                   mix(mix(rand(i + e.xxyx),
+                           rand(i + e.yxyx), f.x),
+                       mix(rand(i + e.xyyx),
+                           rand(i + e.yyyx), f.x), f.y), f.z),
+               mix(mix(mix(rand(i + e.xxxy),
+                           rand(i + e.yxxy), f.x),
+                       mix(rand(i + e.xyxy),
+                           rand(i + e.yyxy), f.x), f.y),
+                   mix(mix(rand(i + e.xxyy),
+                           rand(i + e.yxyy), f.x),
+                       mix(rand(i + e.xyyy),
+                           rand(i + e.yyyy), f.x), f.y), f.z), f.w);
+}
+
+float fbm(vec3 x) {
+    float v = 0.0;
+    float a = 0.5;
+    vec3 shift = vec3(1.0);
+    for (int i = 0; i < 10; ++i) {
+        v += a * smoothnoise(vec4(x, cos(iTime * 0.002) * 200.0));
+        x = x * 2.0 + shift;
+        a *= 0.5;
+    }
+    return v;
+}
+
+vec3 uvTo3D(vec2 uv) {
+    float theta = uv.x * 2.0 * 3.14159265359; // Longitud
+    float phi = uv.y * 3.14159265359; // Latitud
+    float x = sin(phi) * cos(theta);
+    float y = sin(phi) * sin(theta);
+    float z = cos(phi);
+    return vec3(x, y, z);
+}
+
+float max3 (vec3 v) {
+  return max (max (v.x, v.y), v.z);
+}
+
+void fragment() {
+    vec3 col_a = colorA;
+    vec3 col_b = colorB;
+    vec3 col_c = colorC;
+    
+    if(discomode){
+        col_a = vec3(sin(iTime), sin(iTime + 7.0), cos(iTime));
+        col_b = vec3(cos(iTime), cos(iTime + 7.0), sin(iTime));
+        col_c = vec3(sin(iTime), cos(iTime), sin(iTime + 0.5));
+    }
+    
+    vec2 uv = UV;
+    vec3 pos = uvTo3D(uv);
+    
+    pos.y += sin(iTime / 5.0);
+    pos.x += cos(iTime / 5.0);
+    pos.z += sin(iTime / 5.0);
+    
+    float fbmm = fbm(pos);
+    vec3 q = vec3(fbmm, sin(fbmm), cos(fbmm));
+    vec3 r = vec3(fbmm, sin(fbmm), cos(fbmm));
+    float v = fbm(pos + 5.0 * r + iTime * 0.005);
+    
+    vec3 col_top = vec3(1.0);
+    vec3 col_bot = vec3(0.0);
+    
+    vec3 res_color = mix(col_a, col_b, clamp(r, 0.0, 1.0));
+    res_color = mix(res_color, col_c, clamp(q, 0.0, 1.0));
+    
+    float poss = v * 2.0 - 1.0;
+    res_color = mix(res_color, col_top, clamp(poss, 0.0, 1.0));
+    res_color = mix(res_color, col_bot, clamp(-poss, 0.0, 1.0));
+    
+    res_color = res_color / max(max3(res_color), 0.001);
+    
+    res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
+
+    COLOR = vec4(res_color, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrtyo"]
+shader = SubResource("Shader_h2jjw")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = true
+shader_parameter/speed = 1.0
+
+[sub_resource type="Animation" id="Animation_3ft3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nebulosa:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortalBordes:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_auhnn"]
+resource_name = "zoom"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalBordes:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_4n1iw"]
+resource_name = "zoom2"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nebulosa:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4n1iw"]
+_data = {
+&"RESET": SubResource("Animation_3ft3y"),
+&"zoom": SubResource("Animation_auhnn"),
+&"zoom2": SubResource("Animation_4n1iw")
+}
+
+[node name="finale" type="Control" unique_id=774468335]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShaderPortal" parent="." unique_id=1191469079 instance=ExtResource("1_faith")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" parent="ShaderPortal" index="0" unique_id=1388564046]
+material = SubResource("ShaderMaterial_wrtyo")
+metadata/_edit_lock_ = true
+
+[node name="Nebulosa" type="TextureRect" parent="." unique_id=703146342]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.252
+anchor_top = -0.36
+anchor_right = 1.253
+anchor_bottom = 1.3490001
+offset_left = -308.16
+offset_top = 4.8000183
+offset_right = 306.24
+offset_bottom = 5.079956
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_3ft3y")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Nebulosa" unique_id=952602248]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_4n1iw")
+
+[node name="PortalBordes" type="TextureRect" parent="." unique_id=1591513140]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("3_auhnn")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PortalBordes" unique_id=2109110986]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_4n1iw")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1910009967]
+position = Vector2(960, 544)
+script = ExtResource("4_faith")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2098821899]
+stream = ExtResource("5_3ft3y")
+autoplay = true
+
+[editable path="ShaderPortal"]
