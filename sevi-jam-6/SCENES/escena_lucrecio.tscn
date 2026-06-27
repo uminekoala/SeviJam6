@@ -41,11 +41,14 @@ _data = {
 }
 
 [node name="escena_lucrecio" type="TextureRect" unique_id=939026764]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 0.70000005
+anchor_bottom = 0.70000005
+offset_right = 575.9999
+offset_bottom = 323.99994
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_6xdty")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=753081416]

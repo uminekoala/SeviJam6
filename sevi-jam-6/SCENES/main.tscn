@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d2fu14cnwfnow" path="res://ASSETS/PORTAL.png" id="4_df0lc"]
 [ext_resource type="PackedScene" uid="uid://8t6vpopy5qup" path="res://SCENES/escena_orbe.tscn" id="5_h2jjw"]
 [ext_resource type="Script" uid="uid://cii8o7e6vn7bh" path="res://SCRIPTS/orb_clicker.gd" id="7_df0lc"]
+[ext_resource type="PackedScene" uid="uid://cj882eaqnodjo" path="res://SCENES/dialogue_lucrecio.tscn" id="9_ab6ae"]
 
 [sub_resource type="Shader" id="Shader_h2jjw"]
 code = "shader_type canvas_item;
@@ -278,6 +279,10 @@ offset_right = 0.5998535
 offset_bottom = -4.3200684
 mouse_default_cursor_shape = 2
 script = ExtResource("7_df0lc")
+
+[node name="DialogueLucrecio" parent="." unique_id=991737611 instance=ExtResource("9_ab6ae")]
+visible = false
+layout_mode = 1
 
 [editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]

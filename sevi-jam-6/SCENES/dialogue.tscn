@@ -7,30 +7,41 @@
 
 [node name="dialogue" type="Control" unique_id=884283631]
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.521
+anchor_bottom = 0.185
+offset_right = -0.32006836
+offset_bottom = 0.19999695
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_pcus0")
 
 [node name="cuadro" type="NinePatchRect" parent="." unique_id=2128455057]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 46.0
-offset_right = 1745.0
-offset_bottom = 446.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_h0l8x")
 region_rect = Rect2(50.75592, 2.84346, 723.55115, 696.16125)
 patch_margin_left = 200
-patch_margin_top = 200
+patch_margin_top = 150
 patch_margin_right = 200
-patch_margin_bottom = 200
+patch_margin_bottom = 150
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="texto" type="RichTextLabel" parent="." unique_id=1165993006]
-layout_mode = 0
-offset_left = 381.0
-offset_top = 187.0
-offset_right = 1547.0
-offset_bottom = 347.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.31500003
+anchor_right = 0.794
+anchor_bottom = 0.92100006
+offset_right = -0.3600464
+offset_bottom = 0.039993286
 theme_override_fonts/normal_font = ExtResource("3_qmsdf")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 32
 text = "TEXTO"
 
 [node name="TypeTyper" type="Timer" parent="." unique_id=1613153091]
