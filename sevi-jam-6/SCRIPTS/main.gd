@@ -23,6 +23,7 @@ func _ready() -> void:
 	Global.connect("mouse_feedback",on_mouse_feedback)
 	Global.connect("stop_mouse_feedback",on_stop_mouse_feedback)
 	Global.connect("word_solved", on_word_solved_sound_feedback)
+	Global.connect("next_state_feedback", on_next_state_feedback)
 	
 	init_gameplay()
 	
@@ -32,7 +33,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _unhandled_key_input(event):
-	if Global.is_gameplay:
+	if Global.is_gameplay && Global.can_touch_orb:
 		if event is InputEventKey and event.is_pressed():
 			if (array_used_keys.has(event.as_text_key_label())):
 				pass
@@ -113,11 +114,6 @@ func on_play_state(state: int):
 func on_state_dialogue(state: int) -> void:
 	Global.can_pass_dialogue = true
 	Global.can_touch_orb = false
-	$HumSound.stop()
-	$HumSound2.stop()
-	$HumSound3.stop()
-	$YaySound.stop()
-	$YaySound.play()
 	instantiate_lucrecio_dialogue(state)
 
 
@@ -131,7 +127,12 @@ func on_mouse_feedback() -> void:
 	$MouseSound.play()
 
 func on_stop_mouse_feedback() -> void:
-	$MouseSound.stop()
+	if ($HumSound.playing):
+		$HumSound.stop()
+	if ($HumSound2.playing):
+		$HumSound2.stop()
+	if ($HumSound3.playing):
+		$HumSound3.stop()
 
 func on_word_solved_sound_feedback(rgb: Color, id: int, is_correct: bool) -> void:
 	pass
@@ -139,6 +140,15 @@ func on_word_solved_sound_feedback(rgb: Color, id: int, is_correct: bool) -> voi
 	#$HumSound.stop()
 	#$HumSound3.play()
 	
+func on_next_state_feedback() -> void:
+	if ($HumSound.playing):
+		$HumSound.stop()
+	if ($HumSound2.playing):
+		$HumSound2.stop()
+	if ($HumSound3.playing):
+		$HumSound3.stop()
+	$YaySound.stop()
+	$YaySound.play()
 
 func prepare_words(dict_words: Dictionary) -> void:
 	var i = 0
