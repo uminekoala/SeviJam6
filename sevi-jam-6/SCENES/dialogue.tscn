@@ -12,66 +12,6 @@ loop_end = 1500
 mix_rate = 8000
 stereo = true
 
-[sub_resource type="Animation" id="Animation_h0l8x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texto:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_qmsdf"]
-resource_name = "update"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texto:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbupy"]
-_data = {
-&"RESET": SubResource("Animation_h0l8x"),
-&"update": SubResource("Animation_qmsdf")
-}
-
 [node name="dialogue" type="Control" unique_id=884283631]
 layout_mode = 3
 anchor_right = 0.521
@@ -114,12 +54,12 @@ offset_bottom = 0.039993286
 theme_override_fonts/normal_font = ExtResource("3_qmsdf")
 theme_override_font_sizes/normal_font_size = 32
 text = "TEXTO"
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="TypeTyper" type="Timer" parent="." unique_id=1613153091]
 wait_time = 0.05
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2060269443]
 stream = SubResource("AudioStreamWAV_pcus0")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1200970115]
-libraries/ = SubResource("AnimationLibrary_dbupy")
+pitch_scale = 0.85

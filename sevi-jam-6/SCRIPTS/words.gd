@@ -28,7 +28,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if (Global.is_gameplay):
+		add_theme_color_override("default_color",rgb_value)
+	elif (!is_solved):
+		add_theme_color_override("default_color",Color.WHITE)
 
 func start() -> void:
 	is_solved = false
@@ -44,9 +47,6 @@ func start() -> void:
 
 	for a in array_letters:
 		dict_animated_letters[a] = false
-		
-	add_theme_color_override("default_color",rgb_value)
-
 
 func on_prepare_new_state_on_word() -> void:
 	start()
@@ -68,10 +68,12 @@ func _unhandled_key_input(event):
 
 func _on_timer_timeout() -> void:
 	# funciona tambien como un reset
+	is_solved = false
 	text = original_text
 	array_pressed_letters = []
 	for i in dict_animated_letters:
 		dict_animated_letters[i] = false
+	#Global.on_word_unsolved(rgb_value, id)
 
 
 func on_letter_pressed(letter: String) -> void:
@@ -110,7 +112,6 @@ func on_letter_pressed(letter: String) -> void:
 
 func on_letter_released(letter: String) -> void:
 	if !timer.is_stopped():
-			#Global.word_unsolved.emit(rgb_value, id)
 			pass
 	elif array_pressed_letters.has(letter):
 		array_pressed_letters = unique_array(array_pressed_letters)
@@ -136,6 +137,7 @@ func on_revert_all_words(array_id: Array) -> void:
 	for i in array_id:
 		if i == id:
 			$AnimationPlayer.play("shift")
+			Global.on_word_unsolved(rgb_value, id)
 		
 	
 func on_play_word_correct_animation(array_id: Array) -> void:
@@ -143,3 +145,4 @@ func on_play_word_correct_animation(array_id: Array) -> void:
 	for i in array_id:
 		if i == id:
 			$AnimationPlayer.play("correct")
+			Global.on_word_unsolved(rgb_value, id)
