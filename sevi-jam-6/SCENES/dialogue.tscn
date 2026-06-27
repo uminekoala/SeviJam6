@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://du3hl16pqv1xw"]
+
+[ext_resource type="Script" uid="uid://bplav5qds6rnm" path="res://SCRIPTS/dialogo.gd" id="1_pcus0"]
+[ext_resource type="Texture2D" uid="uid://do8qtf0wa66lo" path="res://ASSETS/CUADRADO.png" id="2_h0l8x"]
+[ext_resource type="FontFile" uid="uid://bdqavmwjijefq" path="res://ASSETS/IMMORTAL.ttf" id="3_qmsdf"]
+[ext_resource type="AudioStream" uid="uid://b64p3141o7ebu" path="res://ASSETS/urgh_2.wav" id="4_h0l8x"]
+
+[node name="dialogue" type="Control" unique_id=884283631]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pcus0")
+
+[node name="cuadro" type="NinePatchRect" parent="." unique_id=2128455057]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 46.0
+offset_right = 1745.0
+offset_bottom = 446.0
+texture = ExtResource("2_h0l8x")
+region_rect = Rect2(50.75592, 2.84346, 723.55115, 696.16125)
+patch_margin_left = 200
+patch_margin_top = 200
+patch_margin_right = 200
+patch_margin_bottom = 200
+
+[node name="texto" type="RichTextLabel" parent="." unique_id=1165993006]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 187.0
+offset_right = 1547.0
+offset_bottom = 347.0
+theme_override_fonts/normal_font = ExtResource("3_qmsdf")
+theme_override_font_sizes/normal_font_size = 50
+text = "TEXTO"
+
+[node name="TypeTyper" type="Timer" parent="." unique_id=1613153091]
+wait_time = 0.05
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2060269443]
+stream = ExtResource("4_h0l8x")
