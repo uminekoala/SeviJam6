@@ -49,6 +49,7 @@ func _unhandled_key_input(event):
 					current_tone -= 1
 				check_to_hum_increase(current_tone)
 	else:
+		current_tone = 0
 		array_used_keys = []
 
 
@@ -92,6 +93,8 @@ func on_paint_portal(array_colors: Array) -> void:
 
 
 func on_play_state(state: int):
+	array_used_keys = []
+	current_tone = 0
 	match (state):
 		0:
 			current_portal_colors = array_portal_colors_0
@@ -116,6 +119,14 @@ func on_state_dialogue(state: int) -> void:
 	Global.can_touch_orb = false
 	instantiate_lucrecio_dialogue(state)
 
+func on_failed_dialogue() -> void:
+	Global.can_pass_dialogue = true
+	Global.can_touch_orb = false
+	instantiate_failed_dialogue()
+
+
+func instantiate_failed_dialogue() -> void:
+	pass
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
 	lucrecio_scene.visible = true
