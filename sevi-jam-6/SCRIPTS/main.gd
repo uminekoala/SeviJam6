@@ -38,35 +38,72 @@ func _unhandled_key_input(event):
 				pass
 			else:
 				last_key = event.as_text_key_label()
+				if (current_tone >= 0 && current_tone <= 3):
+					current_tone += 1
 				check_to_hum_increase(current_tone)
-				current_tone += 1
 		elif event is InputEventKey and event.is_released():
-			current_tone -= 1
+			if (current_tone > 0):
+				current_tone -= 1
+			last_key = ""
+			check_to_hun_decrease(current_tone)
 	else:
-		current_tone = 0
+		last_key = ""
 
 
 func init_gameplay():
 	on_state_dialogue(0)
 	#on_play_state(0)
 
+func check_to_hun_decrease(tone: int) -> void:
+	match (tone):
+		0:
+			$HumSound.stop()
+			$HumSound2.stop()
+			$HumSound3.stop()
+		1:
+			if ($HumSound.playing):
+				pass
+			$HumSound2.stop()
+			$HumSound.play()
+			
+		2:
+			if ($HumSound2.playing):
+				pass
+			$HumSound3.stop()
+			$HumSound2.play()
+		3:
+			if ($HumSound3.playing):
+				pass
+			$HumSound2.stop()
 
 func check_to_hum_increase(tone: int) -> void:
 	print(tone)
 	match (tone):
 		0:
+			$HumSound.stop()
+			$HumSound2.stop()
+			$HumSound3.stop()
+		1:
+			if ($HumSound.playing):
+				pass
 			$HumSound2.stop()
 			$HumSound3.stop()
 			$HumSound.play()
-		1:
+			
+		2:
+			if ($HumSound2.playing):
+				pass
 			$HumSound.stop()
 			$HumSound3.stop()
 			$HumSound2.play()
-		2:
+		3:
+			if ($HumSound3.playing):
+				pass
 			$HumSound.stop()
 			$HumSound2.stop()
-			#$HumSound3.play()
+			$HumSound3.play()
 
+			
 
 func on_unpaint_orb(array_colors: Array) -> void:
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC', array_colors[2])
@@ -104,14 +141,14 @@ func on_play_state(state: int):
 
 
 func on_state_dialogue(state: int) -> void:
+	Global.can_pass_dialogue = true
+	Global.can_touch_orb = false
 	$HumSound.stop()
 	$HumSound2.stop()
 	$HumSound3.stop()
 	$YaySound.stop()
 	$YaySound.play()
 	instantiate_lucrecio_dialogue(state)
-	Global.can_pass_dialogue = true
-	Global.can_touch_orb = false
 
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
@@ -127,13 +164,11 @@ func on_stop_mouse_feedback() -> void:
 	$MouseSound.stop()
 
 func on_word_solved_sound_feedback(rgb: Color, id: int, is_correct: bool) -> void:
-	if ($HumSound3.playing):
-		pass
-	else:
-		$HumSound2.stop()
-		$HumSound.stop()
-		$HumSound3.play()
-		
+	pass
+	#$HumSound2.stop()
+	#$HumSound.stop()
+	#$HumSound3.play()
+	
 
 func prepare_words(dict_words: Dictionary) -> void:
 	var i = 0

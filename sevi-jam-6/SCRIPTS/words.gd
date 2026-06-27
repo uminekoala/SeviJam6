@@ -134,11 +134,8 @@ func animate_such_letter(letter: String) -> void:
 
 func on_revert_all_words(array_id: Array) -> void:
 	_on_timer_timeout()
-	print(array_id)
-	print(id)
 	for i in array_id:
 		if i == id:
-			print("entramos aqui")
 			$AnimationPlayer.play("shift")
 			Global.on_word_unsolved(rgb_value, id)
 		
