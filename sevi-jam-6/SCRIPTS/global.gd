@@ -37,8 +37,6 @@ signal hum_increase(tone)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("word_solved", on_word_solved)
-	connect("word_unsolved", on_word_unsolved)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -81,6 +79,7 @@ func next_state() -> void:
 	
 	if !god_true_veredict:
 		can_unpaint_orb = true
+		
 		revert_all_words.emit(array_id)
 		array_id = []
 		rgb_array = []

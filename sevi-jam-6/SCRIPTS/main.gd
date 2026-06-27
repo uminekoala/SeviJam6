@@ -5,7 +5,7 @@ var dict_words_1 = { "NAR":Color.GREEN, "ANJ":Color.VIOLET, "ITA":Color.PINK, "J
 var array_portal_colors_0 = [Color(0.1,0.1,0.6,1),Color(0.45,0.1,0.8,1), Color.PURPLE]
 var array_portal_colors_1 = [Color(0.4,0.4,1,1),Color(0.9,0.9,0,1), Color.YELLOW]
 var current_portal_colors
-
+var last_key
 var current_tone = 0 as int
 
 @onready var lucrecio_scene := get_node("DialogueLucrecio") as DialogueLucrecio
@@ -34,10 +34,16 @@ func _process(_delta: float) -> void:
 func _unhandled_key_input(event):
 	if Global.is_gameplay:
 		if event is InputEventKey and event.is_pressed():
-			current_tone += 1
-			check_to_hum_increase(current_tone)
+			if (last_key == event.as_text_key_label()):
+				pass
+			else:
+				last_key = event.as_text_key_label()
+				check_to_hum_increase(current_tone)
+				current_tone += 1
 		elif event is InputEventKey and event.is_released():
-			current_tone = 0
+			current_tone -= 1
+	else:
+		current_tone = 0
 
 
 func init_gameplay():
@@ -46,13 +52,20 @@ func init_gameplay():
 
 
 func check_to_hum_increase(tone: int) -> void:
+	print(tone)
 	match (tone):
 		0:
-			pass
+			$HumSound2.stop()
+			$HumSound3.stop()
+			$HumSound.play()
 		1:
-			pass
+			$HumSound.stop()
+			$HumSound3.stop()
+			$HumSound2.play()
 		2:
-			pass
+			$HumSound.stop()
+			$HumSound2.stop()
+			#$HumSound3.play()
 
 
 func on_unpaint_orb(array_colors: Array) -> void:
@@ -91,6 +104,11 @@ func on_play_state(state: int):
 
 
 func on_state_dialogue(state: int) -> void:
+	$HumSound.stop()
+	$HumSound2.stop()
+	$HumSound3.stop()
+	$YaySound.stop()
+	$YaySound.play()
 	instantiate_lucrecio_dialogue(state)
 	Global.can_pass_dialogue = true
 	Global.can_touch_orb = false
@@ -102,18 +120,20 @@ func instantiate_lucrecio_dialogue(state: int) -> void:
 	
 
 func on_mouse_feedback() -> void:
-	$HumSound.stop()
-	$HumSound.play()
+	$MouseSound.stop()
+	$MouseSound.play()
 
 func on_stop_mouse_feedback() -> void:
-	$HumSound.stop()
+	$MouseSound.stop()
 
 func on_word_solved_sound_feedback(rgb: Color, id: int, is_correct: bool) -> void:
-	if ($YaySound.playing):
+	if ($HumSound3.playing):
 		pass
 	else:
-		$YaySound.stop()
-		$YaySound.play()
+		$HumSound2.stop()
+		$HumSound.stop()
+		$HumSound3.play()
+		
 
 func prepare_words(dict_words: Dictionary) -> void:
 	var i = 0
