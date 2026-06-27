@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://ctidw3vkiaxjh"]
+
+[ext_resource type="Script" uid="uid://dxkul4qx04d6h" path="res://SCRIPTS/menu.gd" id="1_qnims"]
+[ext_resource type="Texture2D" uid="uid://b7jwdabd3v8ac" path="res://ASSETS/FONDO.png" id="2_mawtk"]
+[ext_resource type="FontFile" uid="uid://bdqavmwjijefq" path="res://ASSETS/IMMORTAL.ttf" id="2_vbyvk"]
+
+[sub_resource type="Theme" id="Theme_ostoq"]
+default_font = ExtResource("2_vbyvk")
+default_font_size = 50
+
+[node name="Menu" type="Control" unique_id=1321206099]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qnims")
+
+[node name="Fondo" type="TextureRect" parent="." unique_id=474650152]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.008
+anchor_bottom = 1.0
+offset_right = -7.3599854
+offset_bottom = 4.0
+texture = ExtResource("2_mawtk")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=876967671]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37500003
+anchor_top = 0.289
+anchor_right = 0.61700004
+anchor_bottom = 0.77000004
+offset_left = -8.000061
+offset_top = -24.119995
+offset_right = 22.359863
+offset_bottom = 9.399963
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=980916241]
+layout_mode = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1011751924]
+layout_mode = 2
+theme = SubResource("Theme_ostoq")
+theme_override_fonts/font = ExtResource("2_vbyvk")
+text = "Comenzar"
+metadata/_edit_lock_ = true
+
+[node name="credits" type="Button" parent="MarginContainer/VBoxContainer" unique_id=635901193]
+layout_mode = 2
+theme = SubResource("Theme_ostoq")
+theme_override_fonts/font = ExtResource("2_vbyvk")
+text = "Créditos"
+metadata/_edit_lock_ = true
+
+[node name="salir" type="Button" parent="MarginContainer/VBoxContainer" unique_id=626633582]
+layout_mode = 2
+theme = SubResource("Theme_ostoq")
+theme_override_fonts/font = ExtResource("2_vbyvk")
+text = "Salir"
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/salir" to="." method="_on_salir_pressed"]
