@@ -30,6 +30,7 @@ signal play_word_correct_animation(array_id)
 signal play_state(state)
 signal prepare_new_state_on_word()
 signal state_dialogue(state)
+signal failed_dialogue()
 signal next_state_feedback()
 signal mouse_feedback()
 signal stop_mouse_feedback()
@@ -77,14 +78,15 @@ func next_state() -> void:
 	for id in dict_id_correct:
 		if !dict_id_correct[id]:
 			god_true_veredict = false
-	
+	#fallo
 	if !god_true_veredict:
 		can_unpaint_orb = true
-		
+		failed_dialogue.emit()
 		revert_all_words.emit(array_id)
 		array_id = []
 		rgb_array = []
-		dict_id_correct = {}	
+		dict_id_correct = {}
+	#acierto	
 	else:
 		play_word_correct_animation.emit(array_id)
 		array_id = []

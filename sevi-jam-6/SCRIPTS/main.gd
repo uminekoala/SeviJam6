@@ -24,7 +24,7 @@ func _ready() -> void:
 	Global.connect("stop_mouse_feedback",on_stop_mouse_feedback)
 	Global.connect("word_solved", on_word_solved_sound_feedback)
 	Global.connect("next_state_feedback", on_next_state_feedback)
-	
+	Global.connect("failed_dialogue", on_failed_dialogue)
 	init_gameplay()
 	
 
@@ -78,11 +78,15 @@ func check_to_hum_increase(tone: int) -> void:
 
 			
 func on_unpaint_orb(array_colors: Array) -> void:
+	
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC', array_colors[2])
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorA',array_colors[0])
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorB',array_colors[1])
 
 func on_paint_orb(rgb: Color)-> void:
+	print(rgb)
+	$Orb/shader/ColorRect.material.set_shader_parameter('colorA',Color.BLACK)
+	$Orb/shader/ColorRect.material.set_shader_parameter('colorB',rgb)
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC',rgb)
 	
 
@@ -95,6 +99,7 @@ func on_paint_portal(array_colors: Array) -> void:
 func on_play_state(state: int):
 	array_used_keys = []
 	current_tone = 0
+	on_unpaint_orb(Global.orb_array_colors)
 	match (state):
 		0:
 			current_portal_colors = array_portal_colors_0
@@ -119,6 +124,7 @@ func on_state_dialogue(state: int) -> void:
 	Global.can_touch_orb = false
 	instantiate_lucrecio_dialogue(state)
 
+
 func on_failed_dialogue() -> void:
 	Global.can_pass_dialogue = true
 	Global.can_touch_orb = false
@@ -126,7 +132,9 @@ func on_failed_dialogue() -> void:
 
 
 func instantiate_failed_dialogue() -> void:
-	pass
+	lucrecio_scene.visible = true
+	var rango = randi_range(0,Global.array_dialogue_fail.size()-1)
+	lucrecio_scene.update_text(Global.array_dialogue_fail[rango])
 
 func instantiate_lucrecio_dialogue(state: int) -> void:
 	lucrecio_scene.visible = true

@@ -147,7 +147,7 @@ func on_revert_all_words(array_id: Array) -> void:
 	for i in array_id:
 		if i == id:
 			$AnimationPlayer.play("shift")
-			Global.on_word_unsolved(rgb_value, id)
+			#Global.on_word_unsolved(rgb_value, id)
 		
 	
 func on_play_word_correct_animation(array_id: Array) -> void:
@@ -155,4 +155,4 @@ func on_play_word_correct_animation(array_id: Array) -> void:
 	for i in array_id:
 		if i == id:
 			$AnimationPlayer.play("correct")
-			Global.on_word_unsolved(rgb_value, id)
+			#Global.on_word_unsolved(rgb_value, id)
