@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dctpjrkwatl0b"]
+
+[ext_resource type="AudioStream" uid="uid://d3ninx0t57mf3" path="res://ASSETS/hum.wav" id="1_04427"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=293356130]
+stream = ExtResource("1_04427")
+autoplay = true
