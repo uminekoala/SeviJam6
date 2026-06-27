@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://0ypmro6h3w7q" path="res://SCENES/tutorial.gd" id="1_8lu41"]
 [ext_resource type="PackedScene" uid="uid://8t6vpopy5qup" path="res://SCENES/escena_orbe.tscn" id="2_8lu41"]
 [ext_resource type="PackedScene" uid="uid://ck2b7kgnylb14" path="res://SCENES/escena_lucrecio.tscn" id="3_qpppf"]
+[ext_resource type="PackedScene" uid="uid://cj882eaqnodjo" path="res://SCENES/dialogue_lucrecio.tscn" id="4_xi18n"]
 
 [node name="Control" type="Control" unique_id=1105176716]
 layout_mode = 3
@@ -33,4 +34,10 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="escena_lucrecio" parent="." unique_id=939026764 instance=ExtResource("3_qpppf")]
+visible = false
+layout_mode = 1
+offset_right = 1317.4283
+offset_bottom = 773.99994
+
+[node name="DialogueLucrecio" parent="." unique_id=991737611 instance=ExtResource("4_xi18n")]
 layout_mode = 1
