@@ -4,7 +4,7 @@ var dict_words_0 = { "LUZ":Color.CRIMSON, "DIA":Color.GHOST_WHITE, "AUN":Color.M
 var dict_words_1 = { "EGO":Color.MEDIUM_BLUE, "IRA":Color.GOLD, "LEY":Color.DARK_GREEN, "VIL":Color.RED}
 var dict_words_2 = { "AVE":Color.BLACK, "RIO":Color.SPRING_GREEN, "MAR":Color.BLUE, "VOZ":Color.PURPLE}
 var dict_words_3 = { "SIN":Color.DEEP_PINK, "PAR":Color.PLUM, "DUO":Color.PINK, "TEZ":Color.GHOST_WHITE}
-var dict_words_4 = { "VIA":Color.KHAKI, "PAZ":Color.DARK_OLIVE_GREEN, "ODA":Color.SEA_GREEN, "FIN":Color.YELLOW}
+var dict_words_4 = { "VIA":Color.KHAKI, "PAZ":Color.DARK_GREEN, "ODA":Color.LIGHT_GREEN, "FIN":Color.YELLOW}
 var array_portal_colors_0 = [Color(0.0, 0.244, 0.305, 1.0),Color(0.392, 0.372, 0.0, 1.0), Color.FOREST_GREEN]
 var array_portal_colors_1 = [Color(0.808, 0.001, 0.811, 1.0),Color(0.941, 0.829, 0.86, 1.0), Color.PURPLE]
 var array_portal_colors_2 = [Color(0.0, 0.531, 0.796, 1.0),Color(0.337, 0.964, 1.0, 1.0), Color.NAVY_BLUE]
@@ -112,15 +112,28 @@ func on_play_state(state: int):
 			prepare_words(dict_words_0)
 			# A mano lo de cual es la correcta. Muy perro esto. 
 			# Lo siento, Fundamento de Programación I
-			$HBoxContainer/MarginContainer/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
-			$HBoxContainer/MarginContainer2/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+			$HBoxContainer/MarginContainer4/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+			$HBoxContainer/MarginContainer5/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
 		1:
 			current_portal_colors = array_portal_colors_1
 			prepare_words(dict_words_1)
 			$HBoxContainer/MarginContainer/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
-			$HBoxContainer/MarginContainer2/PanelWord/MarginContainer/Words.this_is_the_one_officer = false
 			$HBoxContainer/MarginContainer5/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
-		# ... 
+		2:
+			current_portal_colors = array_portal_colors_2
+			prepare_words(dict_words_2)
+			$HBoxContainer/MarginContainer/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+			$HBoxContainer/MarginContainer4/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+		3: 
+			current_portal_colors = array_portal_colors_3
+			prepare_words(dict_words_3)
+			$HBoxContainer/MarginContainer/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+			$HBoxContainer/MarginContainer5/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+		4:
+			current_portal_colors = array_portal_colors_4
+			prepare_words(dict_words_4)
+			$HBoxContainer/MarginContainer2/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+			$HBoxContainer/MarginContainer5/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
 	Global.prepare_new_state_on_word.emit()
 	on_paint_portal(current_portal_colors)
 
