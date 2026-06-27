@@ -31,6 +31,7 @@ func _ready() -> void:
 	Global.connect("word_solved", on_word_solved_sound_feedback)
 	Global.connect("next_state_feedback", on_next_state_feedback)
 	Global.connect("failed_dialogue", on_failed_dialogue)
+	Global.connect("fail_sound_feedback", on_fail_sound_feedback)
 	init_gameplay()
 	
 
@@ -72,6 +73,8 @@ func check_to_hum_increase(tone: int) -> void:
 		$HumSound2.stop()
 	if ($HumSound3.playing):
 		$HumSound3.stop()
+	if ($FailSound.playing):
+		$FailSound.stop()
 	match (tone):
 		0:
 			pass
@@ -94,7 +97,6 @@ func on_paint_orb(rgb: Color)-> void:
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorB',rgb)
 	$Orb/shader/ColorRect.material.set_shader_parameter('colorC',rgb)
 	
-
 func on_paint_portal(array_colors: Array) -> void:
 	$ShaderPortal/ColorRect.material.set_shader_parameter('colorA',array_colors[0])
 	$ShaderPortal/ColorRect.material.set_shader_parameter('colorB',array_colors[1])
@@ -181,9 +183,6 @@ func on_stop_mouse_feedback() -> void:
 
 func on_word_solved_sound_feedback(rgb: Color, id: int, is_correct: bool) -> void:
 	pass
-	#$HumSound2.stop()
-	#$HumSound.stop()
-	#$HumSound3.play()
 	
 func on_next_state_feedback() -> void:
 	if ($HumSound.playing):
@@ -194,6 +193,16 @@ func on_next_state_feedback() -> void:
 		$HumSound3.stop()
 	$YaySound.stop()
 	$YaySound.play()
+
+func on_fail_sound_feedback() -> void:
+	if ($HumSound.playing):
+		$HumSound.stop()
+	if ($HumSound2.playing):
+		$HumSound2.stop()
+	if ($HumSound3.playing):
+		$HumSound3.stop()
+	$FailSound.stop()
+	$FailSound.play()
 
 func prepare_words(dict_words: Dictionary) -> void:
 	var i = 0

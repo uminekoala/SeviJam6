@@ -35,6 +35,7 @@ signal next_state_feedback()
 signal mouse_feedback()
 signal stop_mouse_feedback()
 signal hum_increase(tone)
+signal fail_sound_feedback()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -83,6 +84,7 @@ func next_state() -> void:
 		can_unpaint_orb = true
 		failed_dialogue.emit()
 		revert_all_words.emit(array_id)
+		fail_sound_feedback.emit()
 		array_id = []
 		rgb_array = []
 		dict_id_correct = {}
