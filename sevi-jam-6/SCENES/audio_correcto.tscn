@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3ex7ikxhagok"]
+
+[ext_resource type="AudioStream" uid="uid://dnfkyndb0kwux" path="res://ASSETS/yay_sound.wav" id="1_qgi2x"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=611543632]
+stream = ExtResource("1_qgi2x")
