@@ -63,4 +63,3 @@ wait_time = 0.05
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2060269443]
 stream = SubResource("AudioStreamWAV_pcus0")
-pitch_scale = 0.85

@@ -13,7 +13,7 @@ var array_portal_colors_4 = [Color(0.0, 0.606, 0.156, 1.0),Color(0.549, 0.997, 0
 var current_portal_colors
 var array_used_keys = []
 var current_tone = 0 as int
-
+var firs_time = true
 @onready var lucrecio_scene := get_node("DialogueLucrecio") as DialogueLucrecio
 #array de arrays de modo que el array 1 son los dialogos del primer state que se reproducen en orden.
 
@@ -104,7 +104,9 @@ func on_paint_portal(array_colors: Array) -> void:
 	$ShaderPortal/ColorRect.material.set_shader_parameter('colorC',array_colors[2])
 
 func handle_tutorial() -> void:
-	$TutorialVentana.visible = true
+	if (firs_time):
+		$TutorialVentana.visible = true
+		firs_time = false
 
 func _on_button_pressed():
 	$TutorialVentana.queue_free()
