@@ -139,6 +139,8 @@ func on_play_state(state: int):
 			prepare_words(dict_words_4)
 			$HBoxContainer/MarginContainer2/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
 			$HBoxContainer/MarginContainer5/PanelWord/MarginContainer/Words.this_is_the_one_officer = true
+		5:
+			get_tree().change_scene_to_file("res://SCENES/finale.tscn")
 	Global.prepare_new_state_on_word.emit()
 	on_paint_portal(current_portal_colors)
 
