@@ -14,16 +14,30 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3kon5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pke48"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8b3n"]
+
+[sub_resource type="Theme" id="Theme_jgh54"]
+Button/colors/font_hover_color = Color(0.8653527, 0.27000412, 0.1331186, 1)
+Button/colors/font_pressed_color = Color(0.99478525, 0.054184236, 0, 1)
+Button/constants/outline_size = 4
+Button/styles/hover = SubResource("StyleBoxEmpty_3kon5")
+Button/styles/normal = SubResource("StyleBoxEmpty_pke48")
+Button/styles/pressed = SubResource("StyleBoxEmpty_v8b3n")
+
 [node name="TutorialVentana" type="Control" unique_id=1374159209]
 layout_mode = 3
 anchor_left = 0.30600002
 anchor_top = 0.21200001
 anchor_right = 0.697
-anchor_bottom = 0.731
+anchor_bottom = 0.86
 offset_left = 0.47998047
 offset_top = 0.039993286
 offset_right = -0.23999023
-offset_bottom = 9.52002
+offset_bottom = 0.2000122
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -79,6 +93,7 @@ Debes de combinar los colores de [color=red]dos palabras[/color] para formar el 
 Solo si combinas los colores correctos podrás avanzar."
 fit_content = true
 scroll_active = false
+metadata/_edit_lock_ = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Panel" unique_id=1786602297]
 layout_mode = 1
@@ -100,6 +115,21 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel" unique_id=322050883]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.284
+anchor_top = 0.86700004
+anchor_right = 0.703
+anchor_bottom = 0.95000005
+offset_top = 0.099975586
+offset_right = -0.25
+offset_bottom = -0.10003662
+theme = SubResource("Theme_jgh54")
+theme_override_fonts/font = ExtResource("1_jgh54")
+theme_override_font_sizes/font_size = 30
+text = "Proceder con el ritual"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1192480401]
 layout_mode = 1

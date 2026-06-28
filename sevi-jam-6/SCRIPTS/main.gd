@@ -102,6 +102,11 @@ func on_paint_portal(array_colors: Array) -> void:
 	$ShaderPortal/ColorRect.material.set_shader_parameter('colorB',array_colors[1])
 	$ShaderPortal/ColorRect.material.set_shader_parameter('colorC',array_colors[2])
 
+func handle_tutorial() -> void:
+	$TutorialVentana.visible = true
+
+func _on_button_pressed():
+	$TutorialVentana.queue_free()
 
 func on_play_state(state: int):
 	array_used_keys = []
@@ -113,6 +118,7 @@ func on_play_state(state: int):
 	$HBoxContainer/MarginContainer5/PanelWord/MarginContainer/Words.this_is_the_one_officer = false
 	match (state):
 		0:
+			handle_tutorial()
 			current_portal_colors = array_portal_colors_0
 			prepare_words(dict_words_0)
 			# A mano lo de cual es la correcta. Muy perro esto. 
