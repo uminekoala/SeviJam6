@@ -32,6 +32,7 @@ func _ready() -> void:
 	Global.connect("next_state_feedback", on_next_state_feedback)
 	Global.connect("failed_dialogue", on_failed_dialogue)
 	Global.connect("fail_sound_feedback", on_fail_sound_feedback)
+	await get_tree().create_timer(3).timeout
 	init_gameplay()
 	
 
