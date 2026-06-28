@@ -92,9 +92,12 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("1_0dbkj")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1571327540]
-layout_mode = 0
-offset_right = 1904.0
-offset_bottom = 1088.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98300004
+anchor_bottom = 0.99300003
+offset_right = 16.639893
+offset_bottom = 15.559937
 theme_override_fonts/normal_font = ExtResource("2_g4jdc")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
