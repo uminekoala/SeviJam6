@@ -124,9 +124,9 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ab6ae"]
 shader = SubResource("Shader_o4jo6")
-shader_parameter/colorA = Color(0.028229166, 0.11931767, 0, 1)
-shader_parameter/colorB = Color(0.26695138, 0.5316722, 3.85046e-07, 1)
-shader_parameter/colorC = Color(0.19291472, 0.6818135, 0, 1)
+shader_parameter/colorA = Color(0, 0.5311358, 0.58824646, 1)
+shader_parameter/colorB = Color(0.6591482, 0.6437342, 0, 1)
+shader_parameter/colorC = Color(1, 1, 0.6180314, 1)
 shader_parameter/discomode = false
 shader_parameter/speed = 1.0
 
@@ -176,19 +176,18 @@ material = SubResource("ShaderMaterial_ab6ae")
 [node name="Nebulosa" type="TextureRect" parent="." unique_id=1513005473]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.252
-anchor_top = -0.36
-anchor_right = 1.253
-anchor_bottom = 1.3490001
-offset_left = -0.16000366
-offset_top = -0.19998169
-offset_right = 0.23999023
-offset_bottom = 0.079956055
+anchor_left = -0.29200003
+anchor_top = -0.55600005
+anchor_right = 1.273
+anchor_bottom = 1.5410001
+offset_left = -0.35992432
+offset_top = -0.5199585
+offset_right = -0.15991211
+offset_bottom = -0.28015137
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_df0lc")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="PortalBordes" type="TextureRect" parent="." unique_id=1979764003]
 layout_mode = 1
@@ -234,6 +233,10 @@ theme_override_constants/separation = 10
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1427598185]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="PanelWord" parent="HBoxContainer/MarginContainer" unique_id=685837623 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
@@ -244,6 +247,10 @@ text = ""
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=479259117]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="PanelWord" parent="HBoxContainer/MarginContainer2" unique_id=838267298 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
@@ -269,6 +276,10 @@ id = 999
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer" unique_id=1348050489]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="PanelWord" parent="HBoxContainer/MarginContainer4" unique_id=640584118 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
@@ -280,6 +291,10 @@ id = 2
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer" unique_id=751890386]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="PanelWord" parent="HBoxContainer/MarginContainer5" unique_id=894558101 instance=ExtResource("2_ac0l5")]
 layout_mode = 2
