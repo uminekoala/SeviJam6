@@ -319,6 +319,7 @@ script = ExtResource("7_df0lc")
 
 [node name="HumSound" parent="." unique_id=979741265 instance=ExtResource("10_ceyew")]
 stream = ExtResource("11_v5vvh")
+volume_db = 15.0
 bus = &"hum"
 
 [node name="YaySound" type="AudioStreamPlayer" parent="." unique_id=693626238]
@@ -326,10 +327,12 @@ stream = ExtResource("11_o4jo6")
 
 [node name="HumSound2" parent="." unique_id=1170273964 instance=ExtResource("10_ceyew")]
 stream = ExtResource("13_7p5hq")
+volume_db = 15.0
 bus = &"hum"
 
 [node name="HumSound3" parent="." unique_id=2051459707 instance=ExtResource("10_ceyew")]
 stream = ExtResource("14_dtswy")
+volume_db = 15.0
 bus = &"hum"
 
 [node name="MouseSound" type="AudioStreamPlayer2D" parent="." unique_id=963843135]
