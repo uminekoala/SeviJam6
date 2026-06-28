@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="SeviJam6"
-run/main_scene="uid://b8661bv6rht3u"
+run/main_scene="uid://ctidw3vkiaxjh"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://do1h6uokdpvp8"
 
 [autoload]
 

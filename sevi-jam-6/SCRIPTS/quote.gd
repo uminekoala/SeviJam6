@@ -6,7 +6,8 @@ func _ready() -> void:
 	$RichTextLabel/AnimationPlayer.play("scroll_quote")
 	$ColorRect/AnimationPlayer.play("reveal")
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	await get_tree().create_timer(15).timeout
+	if Input.is_action_just_pressed("action"):
+		get_tree().change_scene_to_file("res://SCENES/main.tscn")
