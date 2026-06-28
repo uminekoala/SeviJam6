@@ -95,7 +95,9 @@ func on_letter_pressed(letter: String) -> void:
 					break
 			is_solved = solved
 			if (is_solved):
-				text = "[shake rate=20.0 level=20 connected=1]"+original_text+"[/shake]"
+				text = "[tornado radius=1.0 freq=5.0 connected=1]"+original_text+"[/tornado]"
+				$AnimationPlayer.play("brillo")
+				#text = "[shake rate=20.0 level=20 connected=1]"+original_text+"[/shake]"
 				Global.word_solved.emit(rgb_value, id, this_is_the_one_officer)
 				#text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]"+original_text+"[/pulse]"
 				#text = "[rainbow freq=0.5 sat=0.8 val=0.8 speed=0.7]"+original_text+"[/rainbow]"
@@ -124,7 +126,7 @@ func deanimate_such_letter(letter: String) -> void:
 	if original_text.contains(letter):
 		for i in text.length():
 			if letter == text[i]:
-				var what = "[wave amp=100.0 freq=15.0 connected=1]"+text[i]+"[/wave]"
+				var what = "[wave amp=200.0 freq=8.0 connected=1]"+text[i]+"[/wave]"
 				var indx = text.find(what)
 				if (indx != -1):
 					text = text.substr(0,indx)+letter+text.substr(indx+what.length())
@@ -137,7 +139,7 @@ func animate_such_letter(letter: String) -> void:
 				if !dict_animated_letters[letter]:
 					var substring1 = text.substr(0, i)
 					var substring2 = text.substr(i,text.length())
-					var animated = "[wave amp=100.0 freq=15.0 connected=1]" # 38 characters
+					var animated = "[wave amp=200.0 freq=8.0 connected=1]" # 38 characters
 					text = substring1 + animated + substring2[0] + "[/wave]" + substring2.substr(1,-1)
 					dict_animated_letters[letter] = true
 
