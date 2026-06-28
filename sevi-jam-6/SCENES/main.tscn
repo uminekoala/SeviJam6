@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://byrgqktrvq63a" path="res://ASSETS/hmm_3.wav" id="14_dtswy"]
 [ext_resource type="AudioStream" uid="uid://ddjmse14dty55" path="res://ASSETS/hum.mp3" id="15_7p5hq"]
 [ext_resource type="AudioStream" uid="uid://tm20sb1l1c64" path="res://ASSETS/fallo_short.wav" id="16_dtswy"]
+[ext_resource type="PackedScene" uid="uid://c4c1fej5nqfuq" path="res://SCENES/tutorial_ventana.tscn" id="17_11g8y"]
 
 [sub_resource type="Shader" id="Shader_o4jo6"]
 code = "shader_type canvas_item;
@@ -344,6 +345,10 @@ autoplay = true
 [node name="FailSound" type="AudioStreamPlayer2D" parent="." unique_id=1687632997]
 stream = ExtResource("16_dtswy")
 volume_db = 15.0
+
+[node name="TutorialVentana" parent="." unique_id=1374159209 instance=ExtResource("17_11g8y")]
+visible = false
+layout_mode = 1
 
 [editable path="ShaderPortal"]
 [editable path="HBoxContainer/MarginContainer/PanelWord"]
