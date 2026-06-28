@@ -88,7 +88,7 @@ theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "Para proceder con el ritual es necesario hacer [tornado radius=8.0 freq=2.0 connected=1]click izquierdo[/tornado] para activar el [color=violet]Orbe[/color] y poder ver el [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]color[/rainbow] de las palabras. ¡Debes [color=red]mantener[/color] el orbe pulsado mientras conjuras!
 
-Debes de combinar los colores de [color=red]dos palabras[/color] para formar el del portal. Para ello, usa tu mano libre para esbozar los glifos de la palabra mágica deseada. [color=red]Pulsa a la vez[/color] todas la teclas que compone la palabra, y [color=red]repite[/color] para la siguiente.
+Debes de combinar los colores de [color=red]DOS palabras[/color] para formar el del portal. Para ello, usa tu mano libre para esbozar los glifos de la palabra mágica deseada. [color=red]Pulsa a la vez[/color] todas la teclas que compone la palabra, y [color=red]repite[/color] para la siguiente.
 
 Solo si combinas los colores correctos podrás avanzar."
 fit_content = true
