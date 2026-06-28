@@ -15,6 +15,7 @@ func _ready() -> void:
 	get_node("../fundido/AnimationPlayer").play("opacidad")
 	await get_tree().create_timer(10).timeout
 	trauma = 0
+	get_tree().change_scene_to_file("res://SCENES/quote2.tscn")
 	
 
 func _process(delta: float) -> void:
