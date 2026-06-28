@@ -95,7 +95,7 @@ func on_letter_pressed(letter: String) -> void:
 					break
 			is_solved = solved
 			if (is_solved):
-				text = "[tornado radius=1.0 freq=5.0 connected=1]"+original_text+"[/tornado]"
+				text = "[tornado radius=1.0 freq=15.0 connected=1]"+original_text+"[/tornado]"
 				$AnimationPlayer.play("brillo")
 				#text = "[shake rate=20.0 level=20 connected=1]"+original_text+"[/shake]"
 				Global.word_solved.emit(rgb_value, id, this_is_the_one_officer)

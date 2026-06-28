@@ -144,6 +144,7 @@ func on_play_state(state: int):
 
 
 func on_state_dialogue(state: int) -> void:
+	Global.current_line_dialogue = 0
 	Global.can_pass_dialogue = true
 	Global.can_touch_orb = false
 	instantiate_lucrecio_dialogue(state)
